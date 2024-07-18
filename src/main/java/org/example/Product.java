@@ -30,14 +30,14 @@ public class Product{
         this.reorderPointCost = 0;
     }
 
-    public Product(String name, float cost, float price, String units, boolean status, int stock, int reorderPoint){
+    public Product(String name, float cost, float price, String units, int stock, int reorderPoint){
         this.id = count++;
         this.name = name;
         this.barCode = 1000000 + count;
         this.cost = cost;
         this.price = price;
         this.units =  units;
-        this.status = status;
+        this.status = true;
         this.stock = stock;
         this.reorderPoint = reorderPoint;
         this.reorderPointCost = reorderPoint * price;
@@ -101,9 +101,6 @@ public class Product{
         this.reorderPoint = reorderPoint;
     }
 
-    public void setReorderPointCost(double reorderPointCost) {
-        this.reorderPointCost = reorderPointCost;
-    }
     public int getReorderPoint() {
         return reorderPoint;
     }
