@@ -3,32 +3,28 @@ package org.example;
 import java.util.Scanner;
 
 public class Main {
+    public static Scanner scanner = new Scanner(System.in);
     static Product[] inventory = new Product[15];
     static Supplier[] suppliers = new Supplier[50];
     static Employee[] employees = new Employee[50];
 
-    public static Scanner scanner = new Scanner(System.in);
-
     public static void main(String[] args) {
 
-        inventory[0] = new Product("Paracetamol", 2.00f, 3.00f, "Pz",  100, 20);
-        inventory[1] = new Product("Ibuprofen", 4.00f, 5.00f, "Pz",  80, 20);
-        inventory[2] = new Product("Amoxicillin", 6.00f, 7.00f, "Pz",  50, 15);
-        inventory[3] = new Product("Omeprazole", 5.00f, 6.00f, "Pz", 60, 15);
-        inventory[4] = new Product("Loratadine", 3.00f, 4.00f, "Pz", 90, 25);
-        inventory[5] = new Product("Simvastatin", 10.00f, 11.00f, "Pz",  40, 10);
-        inventory[6] = new Product("Metformin", 7.00f, 8.00f, "Pz",  70, 20);
-        inventory[7] = new Product("Aspirin", 1.00f, 2.00f, "Pz",  120, 30);
-        inventory[8] = new Product("Sodium Chloride", 2.00f, 3.00f, "Pz", 200, 25);
-        inventory[9] = new Product("Diclofenac", 4.50f, 5.50f, "Pz",  65, 18);
-        inventory[10] = new Product("Cetirizine", 3.50f, 4.50f, "Pz", 75, 20);
-        inventory[11] = new Product("Metoprolol", 8.00f, 9.00f, "Pz",  35, 15);
-        inventory[12] = new Product("Insulin", 15.00f, 16.00f, "Pz",  25, 10);
-        inventory[13] = new Product("Salbutamol", 3.50f, 4.50f, "Pz",  60, 20);
-        inventory[14] = new Product("Warfarin", 6.50f, 7.50f, "Pz", 50, 15);
-
-
-
+        inventory[0] = new Product("Paracetamol", "MarcaX", 2.00f, 3.00f, "Pz", 100, 20);
+        inventory[1] = new Product("Ibuprofen", "MarcaY", 4.00f, 5.00f, "Pz", 80, 20);
+        inventory[2] = new Product("Amoxicillin", "MarcaZ", 6.00f, 7.00f, "Pz", 50, 15);
+        inventory[3] = new Product("Omeprazole", "MarcaX", 5.00f, 6.00f, "Pz", 60, 15);
+        inventory[4] = new Product("Loratadine", "MarcaY", 3.00f, 4.00f, "Pz", 90, 25);
+        inventory[5] = new Product("Simvastatin", "MarcaZ", 10.00f, 11.00f, "Pz", 40, 10);
+        inventory[6] = new Product("Metformin", "MarcaX", 7.00f, 8.00f, "Pz", 70, 20);
+        inventory[7] = new Product("Aspirin", "MarcaY", 1.00f, 2.00f, "Pz", 120, 30);
+        inventory[8] = new Product("Sodium Chloride", "MarcaZ", 2.00f, 3.00f, "Pz", 200, 25);
+        inventory[9] = new Product("Diclofenac", "MarcaX", 4.50f, 5.50f, "Pz", 65, 18);
+        inventory[10] = new Product("Cetirizine", "MarcaY", 3.50f, 4.50f, "Pz", 75, 20);
+        inventory[11] = new Product("Metoprolol", "MarcaZ", 8.00f, 9.00f, "Pz", 35, 15);
+        inventory[12] = new Product("Insulin", "MarcaX", 15.00f, 16.00f, "Pz", 25, 10);
+        inventory[13] = new Product("Salbutamol", "MarcaY", 3.50f, 4.50f, "Pz", 60, 20);
+        inventory[14] = new Product("Warfarin", "MarcaZ", 6.50f, 7.50f, "Pz", 50, 15);
 
 
         Ticket ticket = new Ticket();
@@ -239,18 +235,18 @@ public class Main {
     //             System.out.println(suppliers[idSupplier]);
 
     //         case 3: //Delete supplier
-            
+
     //         editing=true;
 
     //         while (editing) {
     //             System.out.println("id supplier to delete");
     //             idSupplier = scanner.nextInt();
-                
+
     //             System.out.println("Is this the supplier");
     //             System.out.println("1- Yes\t2-No");
     //             System.out.println(suppliers[idSupplier]);
     //             choice = scanner.nextInt();
-                
+
     //             if(choice == 1){
     //                 suppliers[idSupplier]=null;
     //                 suppliers[idSupplier].status = false;
@@ -262,7 +258,7 @@ public class Main {
     //             choice = scanner.nextInt();
 
     //             if (editing) {
-                    
+
     //             }
 
     //         }
@@ -747,7 +743,7 @@ public class Main {
         int idProduct;
         int choice;
         boolean editing = true;
-        String name, units;
+        String name, units, brand;
         float price, cost;
         boolean status;
         int stock, reorderPoint;
@@ -771,6 +767,9 @@ public class Main {
 
                 System.out.print("Name: ");
                 name = scanner.nextLine();
+
+                System.out.print("Name: ");
+                brand = scanner.nextLine();
 
                 System.out.print("Cost: ");
                 cost = scanner.nextFloat();
@@ -796,7 +795,7 @@ public class Main {
                     }
                 }
 
-                inventory[count] = new Product(name, cost, price, units, stock, reorderPoint);
+                inventory[count] = new Product(name, brand, cost, price, units, stock, reorderPoint);
 
                 System.out.println("Product added");
                 System.out.println(inventory[count]);
@@ -810,10 +809,10 @@ public class Main {
                 while (editing) {
                     System.out.println("Which field do you want to edit?");
                     System.out.println("1- Name");
-                    System.out.println("2- Cost");
-                    System.out.println("3- Price");
-                    System.out.println("4- Units");
-                    System.out.println("5- Status");
+                    System.out.println("2- Brand");
+                    System.out.println("3- Cost");
+                    System.out.println("4- Price");
+                    System.out.println("5- Units");
                     System.out.println("6- Add Stock");
                     System.out.println("7- Stock");
                     System.out.println("8- Reorder Point");
@@ -828,35 +827,39 @@ public class Main {
                             inventory[idProduct].setName(scanner.nextLine());
                             break;
                         case 2:
+                            System.out.println("Brand");
+                            inventory[idProduct].setBrand(scanner.nextLine());
+                            break;
+                        case 3:
                             System.out.println("Cost");
                             inventory[idProduct].setCost(scanner.nextFloat());
                             scanner.nextLine(); // pause
                             break;
-                            case 3:
-                                System.out.println("Price");
-                        inventory[idProduct].setPrice(scanner.nextFloat());
-                        scanner.nextLine(); // pause
-                        break;
                         case 4:
+                            System.out.println("Price");
+                            inventory[idProduct].setPrice(scanner.nextFloat());
+                            scanner.nextLine(); // pause
+                            break;
+                        case 5:
                             System.out.println("Units");
                             inventory[idProduct].setUnits(scanner.nextLine());
                             break;
-                        case 5:
+                        case 6:
                             System.out.println("Status");
                             inventory[idProduct].setStatus(scanner.nextBoolean());
                             scanner.nextLine(); // pause
                             break;
-                            case 6:
+                        case 7:
                             System.out.println("Add Stock");
                             inventory[idProduct].setStock(inventory[idProduct].getStock() + scanner.nextInt());
                             scanner.nextLine(); // pause
                             break;
-                        case 7:
+                        case 8:
                             System.out.println("Stock");
                             inventory[idProduct].setStock(scanner.nextInt());
                             scanner.nextLine(); // pause
                             break;
-                        case 8:
+                        case 9:
                             System.out.println("Reorder Point");
                             inventory[idProduct].setReorderPoint(scanner.nextInt());
                             scanner.nextLine(); // pause

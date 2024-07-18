@@ -8,6 +8,7 @@ public class Product{
     String name;
     float price;
     float cost;
+    String brand;
     int quantity;
     String units; //Unidades de medida
     boolean status;
@@ -23,6 +24,7 @@ public class Product{
         this.name = "";
         this.cost = 0;
         this.price = 0;
+        this.brand = "";
         this.units = "pz";
         this.status = false;
         this.stock = 0;
@@ -30,13 +32,14 @@ public class Product{
         this.reorderPointCost = 0;
     }
 
-    public Product(String name, float cost, float price, String units, int stock, int reorderPoint){
+    public Product(String name, String brand, float cost, float price, String units, int stock, int reorderPoint){
         this.id = count++;
         this.name = name;
         this.barCode = 1000000 + count;
         this.cost = cost;
         this.price = price;
         this.units =  units;
+        this.brand = brand;
         this.status = true;
         this.stock = stock;
         this.reorderPoint = reorderPoint;
@@ -82,6 +85,14 @@ public class Product{
         return units;
     }
 
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
     public void setStatus(boolean status) {
         this.status = status;
     }
@@ -112,6 +123,7 @@ public class Product{
     public String toString() {
         return "ID: " + id + "\n" +
                 "Name: " + name + "\n" +
+                "Brand: " + brand + "\n" +
                 "BarCode: " + barCode + "\n" +
                 "Price: " + price + "\n" +
                 "Cost: " + cost + "\n" +
