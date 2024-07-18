@@ -30,22 +30,19 @@ public class Product{
         this.reorderPointCost = 0;
     }
 
-    public Product(String name, float price, String units, boolean status, int stock, int reorderPoint, double reorderPointCost){
+    public Product(String name, float cost, float price, String units, boolean status, int stock, int reorderPoint){
         this.id = count++;
         this.name = name;
         this.barCode = 1000000 + count;
-        this.cost = 0;
+        this.cost = cost;
         this.price = price;
-        this.units =  "pz";
+        this.units =  units;
         this.status = status;
         this.stock = stock;
         this.reorderPoint = reorderPoint;
-        this.reorderPointCost = reorderPointCost;
+        this.reorderPointCost = reorderPoint * price;
     }
 
-    public void setId(int id){
-        this.id = id;
-    }
     public void setPrice(float price){
         this.price = price;
     }
@@ -96,7 +93,17 @@ public class Product{
     public void setStock(int stock){
         this.stock = stock;
     }
+    public int getStock() {
+        return stock;
+    }
 
+    public void setReorderPoint(int reorderPoint) {
+        this.reorderPoint = reorderPoint;
+    }
+
+    public void setReorderPointCost(double reorderPointCost) {
+        this.reorderPointCost = reorderPointCost;
+    }
     public int getReorderPoint() {
         return reorderPoint;
     }
@@ -105,21 +112,16 @@ public class Product{
         return reorderPointCost;
     }
 
-    public void delete(){
-        this.name = "";
-        this.cost = 0;
-        this.price = 0;
-        this.quantity = 0;
-        this.units = "";
-        this.status = false;
-        this.stock = 0;
-        this.reorderPoint = 0;
-        this.reorderPointCost = 0;
-    }
-
-
-
     public String toString() {
-        return String.format("%d%s %s %.2f - %.2f", quantity, units, name, price, price * quantity);
+        return "ID: " + id + "\n" +
+                "Name: " + name + "\n" +
+                "BarCode: " + barCode + "\n" +
+                "Price: " + price + "\n" +
+                "Cost: " + cost + "\n" +
+                "Units: " + units + "\n" +
+                "Status: " + status + "\n" +
+                "Stock: " + stock + "\n" +
+                "Reorder Point: " + reorderPoint + "\n" +
+                "Reorder Point Cost: " + reorderPointCost + "\n";
     }
 }
