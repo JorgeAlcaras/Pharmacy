@@ -6,6 +6,7 @@ public class Person {
     String email;
     String phone;
     String address;
+    boolean status;
 
     public void setId(int id){
         this.id = id;
@@ -23,10 +24,10 @@ public class Person {
         return this.name;
     }
 
-   public void setEmail(String email){
+    public void setEmail(String email){
         this.email = email;
-   }
-
+    }
+    
     public String getEmail() {
         return email;
     }
@@ -70,6 +71,7 @@ class Supplier extends Person {
         this.phone = "";
         this.address = "";
         this.company = "";
+        this.status = true;
     }
 
     public Supplier(String name, String email, String phone, String address, String company){
@@ -79,6 +81,7 @@ class Supplier extends Person {
         this.phone = phone;
         this.address = address;
         this.company = company;
+        this.status = true;
     }
     public void setCompany(String company){
         this.company = company;
@@ -106,6 +109,7 @@ class Employee extends Person {
         this.phone = "";
         this.address = "";
         this.role = "";
+        this.status = true;
     }
 
     public Employee(String name, String email, String phone, String address, String role){
@@ -115,6 +119,7 @@ class Employee extends Person {
         this.phone = phone;
         this.address = address;
         this.role = role;
+        this.status = true;
     }
 
     public void setRole(String position){
