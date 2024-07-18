@@ -617,6 +617,7 @@ public class Main {
                         System.out.println("6- Add Stock");
                         System.out.println("7- Stock");
                         System.out.println("8- Reorder Point");
+                        System.out.println("9- Status");
                         System.out.println("\t0- Exit");
 
                         System.out.print("   -> ");
@@ -659,6 +660,11 @@ public class Main {
                             case 8:
                                 System.out.println("Reorder Point");
                                 inventory[idProduct].setReorderPoint(scanner.nextInt());
+                                scanner.nextLine(); // pause
+                                break;
+                            case 9:
+                                System.out.println("Status (true/false)");
+                                inventory[idProduct].setStatus(scanner.nextBoolean());
                                 scanner.nextLine(); // pause
                                 break;
                             case 0:
