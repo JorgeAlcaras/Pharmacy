@@ -112,7 +112,9 @@ public class Ticket {
 
         for (Product product : products) {
             if (product != null) {
-                ticket.append(product).append("\n");
+                ticket.append(String.format("%d%s %s %.2f - %.2f",
+                        product.quantity, product.units, product.name,
+                        product.price, product.price * product.quantity)).append("\n");
             } else {
                 ticket.append("\n");
                 break;
