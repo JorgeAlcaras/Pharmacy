@@ -26,7 +26,6 @@ public class Main {
         inventory[13] = new Product("Salbutamol", "MarcaY", 3.50f, 4.50f, "Pz", 60, 20);
         inventory[14] = new Product("Warfarin", "MarcaZ", 6.50f, 7.50f, "Pz", 50, 15);
 
-
         Ticket ticket = new Ticket();
         ticket.setClientName("Juan Perez");
         ticket.setDate("2024-07-15");
@@ -48,9 +47,9 @@ public class Main {
         System.out.println("\n\n====== Pharmacy Yahualica ======");
         System.out.println("\n Select an activity");
 
-        System.out.println("1- Start a sale");
+        System.out.println("1- Start a sale (not working)");
         System.out.println("2- Manage Products");
-        System.out.println("3- Manage Clients");
+        System.out.println("3- Manage Clients (not working)");
         System.out.println("4- Manage Suppliers");
         System.out.println("5- Manage Employees");
 
@@ -67,7 +66,7 @@ public class Main {
                 break;
 
             case 3:
-                manageClients();
+                // manageClients();
                 break;
 
             case 4:
@@ -83,205 +82,6 @@ public class Main {
         }
 
     }
-
-    // public static void manageClients() {
-
-    //     clearScreen();
-
-    //     System.err.println("\n====== Pharmacy Yahualica ======");
-    //     System.err.println("       = Manage Clients =");
-    //     System.err.println("\n Select an activity:");
-
-    //     System.out.println("1- Add client");
-    //     System.out.println("2- Update client");
-    //     System.out.println("3- Delete client");
-    //     System.out.println("\t4- Back");
-
-    //     System.out.print("   -> ");
-    //     int option = scanner.nextInt();
-
-    //     switch (option) {
-    //         case 1:
-
-    //             break;
-
-    //         case 2:
-
-    //             break;
-
-    //         case 3:
-
-    //             break;
-
-    //         case 4:
-    //             mainMenu();
-    //             break;
-
-    //         default:
-    //             break;
-    //     }
-
-    // }
-
-    // public static void manageSuplier() {
-    //     int count = 0;
-    //     int idSupplier;
-    //     int choice;
-
-    //     boolean editing = true;
-
-    //     String name, email, phone, address, company;
-
-    //     clearScreen();
-    //     System.err.println("\n====== Pharmacy Yahualica ======");
-    //     System.err.println("      = Manage Suppliers =");
-    //     System.err.println("\n Select an activity:");
-
-    //     System.out.println("1- Add supplier");
-    //     System.out.println("2- Update supplier");
-    //     System.out.println("3- Delete supplier");
-    //     System.out.println("\t4- Back");
-
-    //     System.out.print("   -> ");
-    //     choice = scanner.nextInt();
-
-    //     suppliers[0] = new Supplier("name", "email", "phone", "address", "company");
-
-    //     switch (choice) {
-
-    //         case 1: //Add supplier
-
-    //             // pause
-    //             scanner.nextLine();
-
-    //             System.out.print("Nombre: ");
-    //             name = scanner.nextLine();
-
-    //             System.out.print("E-mail: ");
-    //             email = scanner.nextLine();
-
-    //             System.out.print("Phone: ");
-    //             phone = scanner.nextLine();
-
-    //             System.out.print("Address: ");
-    //             address = scanner.nextLine();
-
-    //             System.out.print("Company: ");
-    //             company = scanner.nextLine();
-
-    //             for (int i = 0; i < suppliers.length; i++) {
-    //                 if (suppliers[i] == null) {
-    //                     count = i;
-    //                     break;
-    //                 }
-    //             }
-
-    //             suppliers[count] = new Supplier(name, email, phone, address, company);
-
-    //             break;
-
-    //         case 2: //Update supplier
-
-    //             System.out.println("id User to update");
-    //             idSupplier = scanner.nextInt();
-
-    //             // pause
-    //             scanner.nextLine();
-
-    //             editing=true;
-
-    //             while (editing) {
-    //                 System.out.println("Which field do you want to edit?");
-    //                 System.out.println("1- Name");
-    //                 System.out.println("2- E-mail");
-    //                 System.out.println("3- Phone");
-    //                 System.out.println("4- Address");
-    //                 System.out.println("5- Company");
-    //                 System.out.println("\t0- Exit");
-
-    //                 choice = scanner.nextInt();
-    //                 scanner.nextLine();
-
-    //                 switch (choice) {
-    //                     case 1:
-    //                         System.out.println("Nombre");
-    //                         suppliers[idSupplier].name = scanner.nextLine();
-    //                         break;
-    //                     case 2:
-    //                         System.out.println("E-mail");
-    //                         suppliers[idSupplier].email = scanner.nextLine();
-    //                         break;
-    //                     case 3:
-    //                         System.out.println("Phone");
-    //                         suppliers[idSupplier].phone = scanner.nextLine();
-    //                         break;
-    //                     case 4:
-    //                         System.out.println("Address");
-    //                         suppliers[idSupplier].address = scanner.nextLine();
-    //                         break;
-    //                     case 5:
-    //                         System.out.println("Company");
-    //                         suppliers[idSupplier].company = scanner.nextLine();
-    //                         break;
-    //                     case 0:
-    //                         editing = false;
-    //                         break;
-    //                     default:
-    //                         System.out.println("Invalid choice. Please try again.");
-    //                 }
-    //             }
-
-    //             System.out.println("Updated Supplier Info:");
-    //             System.out.println(suppliers[idSupplier]);
-
-    //         case 3: //Delete supplier
-
-    //         editing=true;
-
-    //         while (editing) {
-    //             System.out.println("id supplier to delete");
-    //             idSupplier = scanner.nextInt();
-
-    //             System.out.println("Is this the supplier");
-    //             System.out.println("1- Yes\t2-No");
-    //             System.out.println(suppliers[idSupplier]);
-    //             choice = scanner.nextInt();
-
-    //             if(choice == 1){
-    //                 suppliers[idSupplier]=null;
-    //                 suppliers[idSupplier].status = false;
-    //                 System.out.println("Supplier deleted");
-    //             }
-
-    //             System.out.println("Delete another supplier");
-    //             System.out.println("1- Yes\t2-No");
-    //             choice = scanner.nextInt();
-
-    //             if (editing) {
-
-    //             }
-
-    //         }
-
-    //             break;
-
-    //         case 4:
-    //             mainMenu();
-    //             break;
-
-    //         default:
-    //             break;
-    //     }
-
-    // }
-
-    // public static void manageEmployees() {
-    //     clearScreen();
-    //     System.err.println("\n====== Pharmacy Yahualica ======");
-    //     System.err.println("      = Manage Employees =");
-    //     System.err.println("\n Select an activity");
-    // }
-
 
     public static void manageClients() {
 
@@ -322,7 +122,7 @@ public class Main {
 
     }
 
-//Suplier
+    // Suplier
 
     public static void manageSuplier() {
         int choice;
@@ -530,7 +330,7 @@ public class Main {
         scanner.nextLine();
     }
 
-//Employees
+    // Employees
 
     public static void manageEmployees() {
         int choice;
@@ -548,7 +348,6 @@ public class Main {
 
             System.out.print("   -> ");
             choice = scanner.nextInt();
-
 
             switch (choice) {
 
@@ -737,7 +536,6 @@ public class Main {
         scanner.nextLine();
     }
 
-
     public static void manageProducts() {
         int count = 0;
         int idProduct;
@@ -748,155 +546,161 @@ public class Main {
         boolean status;
         int stock, reorderPoint;
 
-        clearScreen();
-        System.out.println("\n====== Pharmacy Yahualica ======");
-        System.out.println("      = Manage Products =");
-        System.out.println("\n Select an activity:");
-        System.out.println("1- Add product");
-        System.out.println("2- Update product");
-        System.out.println("3- Delete product");
-        System.out.println("\t4- Back");
+        do {
+            clearScreen();
+            System.out.println("\n====== Pharmacy Yahualica ======");
+            System.out.println("      = Manage Products =");
+            System.out.println("\n Select an activity:");
+            System.out.println("1- Add product");
+            System.out.println("2- Update product");
+            System.out.println("3- Delete product");
+            System.out.println("\t4- Back");
 
-        System.out.print("   -> ");
-        choice = scanner.nextInt();
+            System.out.print("   -> ");
+            choice = scanner.nextInt();
 
+            switch (choice) {
+                case 1: // Add product
+                    scanner.nextLine(); // pause
 
-        switch (choice) {
-            case 1: // Add product
-                scanner.nextLine(); // pause
+                    System.out.print("Name: ");
+                    name = scanner.nextLine();
 
-                System.out.print("Name: ");
-                name = scanner.nextLine();
+                    System.out.print("Brand: ");
+                    brand = scanner.nextLine();
 
-                System.out.print("Name: ");
-                brand = scanner.nextLine();
+                    System.out.print("Cost: ");
+                    cost = scanner.nextFloat();
 
-                System.out.print("Cost: ");
-                cost = scanner.nextFloat();
+                    System.out.print("Price: ");
+                    price = scanner.nextFloat();
 
-                System.out.print("Price: ");
-                price = scanner.nextFloat();
+                    scanner.nextLine(); // pause
 
-                scanner.nextLine(); // pause
+                    System.out.print("Units(ej. pz, kg): ");
+                    units = scanner.nextLine();
 
-                System.out.print("Units(ej. pz, kg): ");
-                units = scanner.nextLine();
+                    System.out.print("Stock: ");
+                    stock = scanner.nextInt();
 
-                System.out.print("Stock: ");
-                stock = scanner.nextInt();
+                    System.out.print("Reorder Point: ");
+                    reorderPoint = scanner.nextInt();
 
-                System.out.print("Reorder Point: ");
-                reorderPoint = scanner.nextInt();
-
-                for (int i = 0; i < inventory.length; i++) {
-                    if (inventory[i] == null) {
-                        count = i;
-                        break;
+                    for (int i = 0; i < inventory.length; i++) {
+                        if (inventory[i] == null) {
+                            count = i;
+                            break;
+                        }
                     }
-                }
 
-                inventory[count] = new Product(name, brand, cost, price, units, stock, reorderPoint);
+                    inventory[count] = new Product(name, brand, cost, price, units, stock, reorderPoint);
 
-                System.out.println("Product added");
-                System.out.println(inventory[count]);
-                break;
+                    System.out.println("\n\tProduct added");
+                    System.out.println(inventory[count]);
 
-            case 2: // Update product
-                System.out.print("ID Product to update: ");
-                idProduct = scanner.nextInt();
-                scanner.nextLine(); // pause
+                    scanner.nextLine(); // pause
+                    scanner.nextLine(); // pause
+                    break;
 
-                while (editing) {
-                    System.out.println("Which field do you want to edit?");
-                    System.out.println("1- Name");
-                    System.out.println("2- Brand");
-                    System.out.println("3- Cost");
-                    System.out.println("4- Price");
-                    System.out.println("5- Units");
-                    System.out.println("6- Add Stock");
-                    System.out.println("7- Stock");
-                    System.out.println("8- Reorder Point");
-                    System.out.println("\t0- Exit");
+                case 2: // Update product
+                    System.out.print("ID Product to update: ");
+                    idProduct = scanner.nextInt();
+                    scanner.nextLine(); // pause
 
+                    while (editing) {
+                        System.out.println("Which field do you want to edit?");
+                        System.out.println("1- Name");
+                        System.out.println("2- Brand");
+                        System.out.println("3- Cost");
+                        System.out.println("4- Price");
+                        System.out.println("5- Units");
+                        System.out.println("6- Add Stock");
+                        System.out.println("7- Stock");
+                        System.out.println("8- Reorder Point");
+                        System.out.println("\t0- Exit");
+
+                        System.out.print("   -> ");
+                        choice = scanner.nextInt();
+                        scanner.nextLine();
+
+                        switch (choice) {
+                            case 1:
+                                System.out.println("Name");
+                                inventory[idProduct].setName(scanner.nextLine());
+                                break;
+                            case 2:
+                                System.out.println("Brand");
+                                inventory[idProduct].setBrand(scanner.nextLine());
+                                break;
+                            case 3:
+                                System.out.println("Cost");
+                                inventory[idProduct].setCost(scanner.nextFloat());
+                                scanner.nextLine(); // pause
+                                break;
+                            case 4:
+                                System.out.println("Price");
+                                inventory[idProduct].setPrice(scanner.nextFloat());
+                                scanner.nextLine(); // pause
+                                break;
+                            case 5:
+                                System.out.println("Units");
+                                inventory[idProduct].setUnits(scanner.nextLine());
+                                break;
+                            case 6:
+                                System.out.println("Add Stock");
+                                inventory[idProduct].setStock(inventory[idProduct].getStock() + scanner.nextInt());
+                                scanner.nextLine(); // pause
+                                break;
+                            case 7:
+                                System.out.println("Stock");
+                                inventory[idProduct].setStock(scanner.nextInt());
+                                scanner.nextLine(); // pause
+                                break;
+                            case 8:
+                                System.out.println("Reorder Point");
+                                inventory[idProduct].setReorderPoint(scanner.nextInt());
+                                scanner.nextLine(); // pause
+                                break;
+                            case 0:
+                                editing = false;
+                                break;
+                            default:
+                                System.out.println("Invalid choice. Please try again.");
+                        }
+                    }
+
+                    System.out.println("\n\tUpdated Product Info:");
+                    System.out.println(inventory[idProduct]);
+
+
+                    scanner.nextLine(); // pause
+                    break;
+
+                case 3: // Delete product
+                    System.out.print("ID Product to delete: ");
+                    idProduct = scanner.nextInt();
+                    System.out.println("\nIs this the product");
+                    System.out.println(inventory[idProduct]);
+                    System.out.println("\n1- Yes\t2- No");
+                    System.out.print("   -> ");
                     choice = scanner.nextInt();
-                    scanner.nextLine();
-
-                    switch (choice) {
-                        case 1:
-                            System.out.println("Name");
-                            inventory[idProduct].setName(scanner.nextLine());
-                            break;
-                        case 2:
-                            System.out.println("Brand");
-                            inventory[idProduct].setBrand(scanner.nextLine());
-                            break;
-                        case 3:
-                            System.out.println("Cost");
-                            inventory[idProduct].setCost(scanner.nextFloat());
-                            scanner.nextLine(); // pause
-                            break;
-                        case 4:
-                            System.out.println("Price");
-                            inventory[idProduct].setPrice(scanner.nextFloat());
-                            scanner.nextLine(); // pause
-                            break;
-                        case 5:
-                            System.out.println("Units");
-                            inventory[idProduct].setUnits(scanner.nextLine());
-                            break;
-                        case 6:
-                            System.out.println("Status");
-                            inventory[idProduct].setStatus(scanner.nextBoolean());
-                            scanner.nextLine(); // pause
-                            break;
-                        case 7:
-                            System.out.println("Add Stock");
-                            inventory[idProduct].setStock(inventory[idProduct].getStock() + scanner.nextInt());
-                            scanner.nextLine(); // pause
-                            break;
-                        case 8:
-                            System.out.println("Stock");
-                            inventory[idProduct].setStock(scanner.nextInt());
-                            scanner.nextLine(); // pause
-                            break;
-                        case 9:
-                            System.out.println("Reorder Point");
-                            inventory[idProduct].setReorderPoint(scanner.nextInt());
-                            scanner.nextLine(); // pause
-                            break;
-                        case 0:
-                            editing = false;
-                            break;
-                        default:
-                            System.out.println("Invalid choice. Please try again.");
+                    if (choice == 1) {
+                        inventory[idProduct] = null;
+                        System.out.println("Product deleted");
                     }
-                }
 
-                System.out.println("Updated Product Info:");
-                System.out.println(inventory[idProduct]);
 
-                break;
+                    scanner.nextLine(); // pause
+                    break;
 
-            case 3: // Delete product
-                System.out.print("ID Product to delete: ");
-                idProduct = scanner.nextInt();
-                System.out.println("Is this the product");
-                System.out.println("1- Yes\t2- No");
-                System.out.println(inventory[idProduct]);
-                choice = scanner.nextInt();
-                if (choice == 1) {
-                    inventory[idProduct] = null;
-                    System.out.println("Product deleted");
-                }
+                case 4:
+                    mainMenu();
+                    break;
 
-                break;
-
-            case 4:
-                break;
-
-            default:
-                break;
-        }
+                default:
+                    break;
+            }
+        } while (true);
     }
 
     public static void clearScreen() {
