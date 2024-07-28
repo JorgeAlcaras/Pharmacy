@@ -10,6 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+        /*
         inventory[0] = new Product("Paracetamol", "MarcaX", 2.00f, 3.00f, "Pz", 100, 20);
         inventory[1] = new Product("Ibuprofen", "MarcaY", 4.00f, 5.00f, "Pz", 80, 20);
         inventory[2] = new Product("Amoxicillin", "MarcaZ", 6.00f, 7.00f, "Pz", 50, 15);
@@ -25,6 +26,7 @@ public class Main {
         inventory[12] = new Product("Insulin", "MarcaX", 15.00f, 16.00f, "Pz", 25, 10);
         inventory[13] = new Product("Salbutamol", "MarcaY", 3.50f, 4.50f, "Pz", 60, 20);
         inventory[14] = new Product("Warfarin", "MarcaZ", 6.50f, 7.50f, "Pz", 50, 15);
+         */
 
         Ticket ticket = new Ticket();
         ticket.setClientName("Juan Perez");
@@ -52,6 +54,7 @@ public class Main {
         System.out.println("3- Manage Clients (not working)");
         System.out.println("4- Manage Suppliers");
         System.out.println("5- Manage Employees");
+        System.out.println("6- Report Inventory");
 
         System.out.print("   -> ");
         int option = scanner.nextInt();
@@ -75,6 +78,10 @@ public class Main {
 
             case 5:
                 manageEmployees();
+                break;
+
+            case 6:
+                getInventory();
                 break;
 
             default:
@@ -708,6 +715,43 @@ public class Main {
             }
         } while (true);
     }
+
+    public static void getInventory() {
+
+        float totalCost = 0;
+        for (Product product : inventory) {
+            if (product != null) {
+                System.out.println(product);
+                totalCost += product.cost;
+            }
+        }
+        System.out.println("Total products: " + inventory.length);
+        System.out.println("Total cost: " + totalCost);
+    }
+
+    public static void createReceptionNote() {
+        boolean option = true;
+        int supplierID;
+        int productID;
+        int quantity;
+
+        System.out.println("Create Reception Note");
+        System.out.println("Supplier ID: ");
+        supplierID = scanner.nextInt();
+        System.out.println("Products: ");
+        while (option) {
+            System.out.println("Product ID: ");
+            productID = scanner.nextInt();
+            System.out.println("Quantity: ");
+            quantity = scanner.nextInt();
+            System.out.println("Add another product? (y/n)");
+            if (scanner.nextLine().equals("n")) {
+                option = false;
+            }
+
+        }
+    }
+
 
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
