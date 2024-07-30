@@ -40,13 +40,15 @@ public class Main {
 
         Ticket ticket = new Ticket();
         ticket.setClientName("Juan Perez");
-        ticket.setDate("2024-07-15");
+        ticket.setDate("2024/07/15");
         ticket.addProduct(1000001, 7);
         ticket.addProduct(1000002, 1000);
         ticket.addProduct(1000014, 1);
         ticket.addProduct(1000011, 4);
         ticket.setPaymentMethod("Cash");
         ticket.setAmountReceived(10000);
+
+        tickets[0] = ticket;
 
         // System.out.println(ticket);
 
@@ -66,6 +68,7 @@ public class Main {
         System.out.println("5- Manage Employees");
         System.out.println("6- Report Inventory");
         System.out.println("7- Reception Note Options");
+        System.out.println("8- Sales Report");
 
         System.out.print("   -> ");
         int option = scanner.nextInt();
@@ -96,6 +99,13 @@ public class Main {
                 break;
             case 7:
                 receptionNoteOptions();
+                break;
+            case 8:
+                try {
+                    reportSales();
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
 
             default:
@@ -840,10 +850,10 @@ public class Main {
         String startDate;
         String endDate;
 
-
         System.out.println("\n====== Pharmacy Yahualica ======");
         System.out.println("        = Sales Report =");
         System.out.print("Escribe la fecha de inicio: ");
+        scanner.nextLine();
         startDate = scanner.nextLine();
         System.out.print("Escribe la fecha de final: ");
         endDate = scanner.nextLine();
@@ -859,8 +869,10 @@ public class Main {
     public static List<Ticket> filterTicketsByDateRange(Date startDate, Date endDate) throws ParseException {
         List<Ticket> filteredTickets = new ArrayList<>();
         for (Ticket ticket : tickets) {
-            if (!sdf.parse(ticket.date).before(startDate) && !sdf.parse(ticket.date).after(endDate)) {
-                filteredTickets.add(ticket);
+            if (ticket != null) {
+                if (!sdf.parse(ticket.date).before(startDate) && !sdf.parse(ticket.date).after(endDate)) {
+                    filteredTickets.add(ticket);
+                }
             }
         }
         return filteredTickets;
