@@ -1,7 +1,9 @@
 package org.example;
 
-import java.util.Objects;
-import java.util.Scanner;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
 
 public class Main {
     public static Scanner scanner = new Scanner(System.in);
@@ -9,6 +11,10 @@ public class Main {
     static Supplier[] suppliers = new Supplier[50];
     static Employee[] employees = new Employee[50];
     static ReceptionNote[] receptionNotes = new ReceptionNote[50];
+
+    static Ticket[] tickets = new Ticket[50];
+
+    static SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
     public static void main(String[] args) {
 
@@ -830,6 +836,35 @@ public class Main {
         }
     }
 
+    public static void reportSales() throws ParseException {
+        String startDate;
+        String endDate;
+
+
+        System.out.println("\n====== Pharmacy Yahualica ======");
+        System.out.println("        = Sales Report =");
+        System.out.print("Escribe la fecha de inicio: ");
+        startDate = scanner.nextLine();
+        System.out.print("Escribe la fecha de final: ");
+        endDate = scanner.nextLine();
+
+        List<Ticket> filteredTickets = filterTicketsByDateRange(sdf.parse(startDate), sdf.parse(endDate));
+
+        System.out.println(filteredTickets);
+
+
+    }
+
+
+    public static List<Ticket> filterTicketsByDateRange(Date startDate, Date endDate) throws ParseException {
+        List<Ticket> filteredTickets = new ArrayList<>();
+        for (Ticket ticket : tickets) {
+            if (!sdf.parse(ticket.date).before(startDate) && !sdf.parse(ticket.date).after(endDate)) {
+                filteredTickets.add(ticket);
+            }
+        }
+        return filteredTickets;
+    }
 
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
