@@ -581,25 +581,8 @@ public class Main {
                     System.out.print("Name: ");
                     name = scanner.nextLine();
 
-                    System.out.print("Brand: ");
-                    brand = scanner.nextLine();
-
-                    System.out.print("Cost: ");
-                    cost = scanner.nextFloat();
-
-                    System.out.print("Price: ");
-                    price = scanner.nextFloat();
-
-                    scanner.nextLine(); // pause
-
                     System.out.print("Units(ej. pz, kg): ");
                     units = scanner.nextLine();
-
-                    System.out.print("Stock: ");
-                    stock = scanner.nextInt();
-
-                    System.out.print("Reorder Point: ");
-                    reorderPoint = scanner.nextInt();
 
                     for (int i = 0; i < inventory.length; i++) {
                         if (inventory[i] == null) {
@@ -608,7 +591,7 @@ public class Main {
                         }
                     }
 
-                    inventory[count] = new Product(name, brand, cost, price, units, stock, reorderPoint);
+                    inventory[count] = new Product(name, units);
 
                     System.out.println("\n\tProduct added");
                     System.out.println(inventory[count]);
