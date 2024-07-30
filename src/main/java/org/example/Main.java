@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -7,10 +8,10 @@ public class Main {
     static Product[] inventory = new Product[15];
     static Supplier[] suppliers = new Supplier[50];
     static Employee[] employees = new Employee[50];
+    static ReceptionNote[] receptionNotes = new ReceptionNote[50];
 
     public static void main(String[] args) {
 
-        /*
         inventory[0] = new Product("Paracetamol", "MarcaX", 2.00f, 3.00f, "Pz", 100, 20);
         inventory[1] = new Product("Ibuprofen", "MarcaY", 4.00f, 5.00f, "Pz", 80, 20);
         inventory[2] = new Product("Amoxicillin", "MarcaZ", 6.00f, 7.00f, "Pz", 50, 15);
@@ -26,7 +27,10 @@ public class Main {
         inventory[12] = new Product("Insulin", "MarcaX", 15.00f, 16.00f, "Pz", 25, 10);
         inventory[13] = new Product("Salbutamol", "MarcaY", 3.50f, 4.50f, "Pz", 60, 20);
         inventory[14] = new Product("Warfarin", "MarcaZ", 6.50f, 7.50f, "Pz", 50, 15);
-         */
+
+        suppliers[0] = new Supplier("Juan Perez", "hola@gmail.com", "333-333-3333", "Calle 123", "Farmacias Guadalajara");
+
+        System.out.println(suppliers[0]);
 
         Ticket ticket = new Ticket();
         ticket.setClientName("Juan Perez");
@@ -55,6 +59,7 @@ public class Main {
         System.out.println("4- Manage Suppliers");
         System.out.println("5- Manage Employees");
         System.out.println("6- Report Inventory");
+        System.out.println("7- Reception Note Options");
 
         System.out.print("   -> ");
         int option = scanner.nextInt();
@@ -73,7 +78,7 @@ public class Main {
                 break;
 
             case 4:
-                manageSuplier();
+                manageSupplier();
                 break;
 
             case 5:
@@ -82,6 +87,9 @@ public class Main {
 
             case 6:
                 getInventory();
+                break;
+            case 7:
+                receptionNoteOptions();
                 break;
 
             default:
@@ -131,7 +139,7 @@ public class Main {
 
     // Suplier
 
-    public static void manageSuplier() {
+    public static void manageSupplier() {
         int choice;
 
         do {
@@ -701,8 +709,6 @@ public class Main {
                         inventory[idProduct] = null;
                         System.out.println("Product deleted");
                     }
-
-
                     scanner.nextLine(); // pause
                     break;
 
@@ -717,38 +723,127 @@ public class Main {
     }
 
     public static void getInventory() {
-
+        int count = 0;
         float totalCost = 0;
+
         for (Product product : inventory) {
             if (product != null) {
                 System.out.println(product);
                 totalCost += product.cost;
+                count++;
             }
         }
-        System.out.println("Total products: " + inventory.length);
+        System.out.println("Total products: " + count);
         System.out.println("Total cost: " + totalCost);
+    }
+
+    public static void receptionNoteOptions() {
+        int choice;
+
+        do {
+            clearScreen();
+            System.out.println("\n====== Pharmacy Yahualica ======");
+            System.out.println("      = Manage Reception Note =");
+            System.out.println("\n Select an activity:");
+            System.out.println("1- Create Reception Note");
+            System.out.println("2- Show Reception Note");
+            System.out.println("\t3- Back");
+            System.out.print("   -> ");
+            choice = scanner.nextInt();
+
+
+            switch (choice) {
+                case 1: // Create Reception Note
+                    createReceptionNote();
+                    break;
+
+                case 2: // Show Reception Note
+                    showReceptionNote();
+                    break;
+
+                case 3:
+                    mainMenu();
+                    break;
+
+                default:
+                    break;
+            }
+
+
+        } while (true);
+
     }
 
     public static void createReceptionNote() {
         boolean option = true;
         int supplierID;
+        String receivedDate;
         int productID;
         int quantity;
+        int count = 0;
+        int productNum = 0;
 
+
+        for (int i = 0; i < receptionNotes.length; i++) {
+            if (receptionNotes[i] == null) {
+                receptionNotes[i] = new ReceptionNote();
+                count = i;
+                break;
+            }
+        }
         System.out.println("Create Reception Note");
-        System.out.println("Supplier ID: ");
+        System.out.print("Supplier ID: ");
         supplierID = scanner.nextInt();
-        System.out.println("Products: ");
+        while (suppliers[supplierID] == null) {
+            System.out.println("Supplier not found. Try again.");
+            System.out.print("Supplier ID: ");
+            supplierID = scanner.nextInt();
+        }
+        receptionNotes[count].setSupplier(suppliers[supplierID]);
+
+        System.out.print("Date(Write the date YYYY/MM/DD): ");
+        scanner.nextLine(); // pause
+        receivedDate = scanner.nextLine();
+        receptionNotes[count].setReceivedDate(receivedDate);
+        System.out.println("Products ");
         while (option) {
-            System.out.println("Product ID: ");
+            System.out.print("Product ID: ");
             productID = scanner.nextInt();
-            System.out.println("Quantity: ");
+            System.out.print("Quantity: ");
             quantity = scanner.nextInt();
-            System.out.println("Add another product? (y/n)");
+            receptionNotes[count].addProduct(productID, quantity, productNum);
+            System.out.print("Add another product? (y/n): ");
+            scanner.nextLine(); // pause
             if (scanner.nextLine().equals("n")) {
                 option = false;
             }
+            productNum++;
+        }
+    }
 
+    public static void showReceptionNote() {
+        String data;
+
+
+        for (ReceptionNote receptionNote : receptionNotes) {
+            if (receptionNote != null) {
+                System.out.println("Show Reception Note");
+                System.out.print("Which Reception Note do you want to see? (Write the ID or YYYY/MM/DD)");
+                scanner.nextLine(); //Pause
+                data = scanner.nextLine();
+                try {
+                    if (receptionNote.id == Integer.parseInt(data)) {
+                        System.out.println(receptionNote);
+                        break;
+                    }
+                } catch (NumberFormatException ignored) {
+                    if (Objects.equals(receptionNote.receivedDate, data)) {
+                        System.out.println(receptionNote);
+                    } else {
+                        System.out.println("Nota de recepción no encontrada :( ");
+                    }
+                }
+            }
         }
     }
 
