@@ -1070,7 +1070,7 @@ public class Main {
 
     //start sell
     public static void startSell() {
-        Ticket tiket = new Ticket();
+        Ticket ticket = new Ticket();
 
         do {
             clearScreen();
@@ -1078,10 +1078,10 @@ public class Main {
             System.out.println("\n New sell");
 
             System.out.println("1- Add product");
-            System.out.println("2- Calcel product");
-            System.out.println("3- Show current tiket");
-            System.out.println("4- Finish tiket");
-            System.out.println("5- Calcel tiket");
+            System.out.println("2- Cancel product");
+            System.out.println("3- Show current ticket");
+            System.out.println("4- Finish ticket");
+            System.out.println("5- Cancel ticket");
             System.out.println("\t0- Exit");
 
             System.out.print("   -> ");
@@ -1089,27 +1089,27 @@ public class Main {
 
             switch (option) {
                 case 1:
-                    tiket = addTicketProduct(tiket);
+                    ticket = addTicketProduct(ticket);
                     break;
 
                 case 2:
-                    tiket = cancelProduct(tiket);
+                    ticket = cancelProduct(ticket);
                     break;
 
                 case 3:
-                    System.out.println("\n -- Current tiket --\n\n");
-                    System.out.println(tiket.toString());
+                    System.out.println("\n -- Current ticket --\n\n");
+                    System.out.println(ticket.toString());
                     scanner.nextLine(); // pause
                     scanner.nextLine();
                     break;
 
                 case 4:
-                    finishTicket(tiket);
+                    finishTicket(ticket);
 
                     break;
 
                 case 5:
-                    tiket = cancelTiket(tiket);
+                    ticket = cancelTicket(ticket);
                     break;
 
                 case 0:
@@ -1156,8 +1156,8 @@ public class Main {
         return ticket;
     }
 
-    public static Ticket cancelProduct(Ticket tiket) {
-        Product[] product = tiket.getProducts();
+    public static Ticket cancelProduct(Ticket ticket) {
+        Product[] product = ticket.getProducts();
         int idProduct;
 
         do {
@@ -1167,7 +1167,7 @@ public class Main {
             for (int i = 0; i < product.length; i++) {
                 if (product[i].getId() == idProduct) {
 
-                    tiket.setSubtotal(tiket.getSubtotal() - (product[i].getPrice() * product[i].getQuantity()));
+                    ticket.setSubtotal(ticket.getSubtotal() - (product[i].getPrice() * product[i].getQuantity()));
                     product[i] = null;
                     break;
                 }
@@ -1182,7 +1182,7 @@ public class Main {
 
         } while (true);
 
-        return tiket;
+        return ticket;
     }
 
 
@@ -1208,7 +1208,7 @@ public class Main {
     }
 
 
-    public static Ticket cancelTiket(Ticket t) {
+    public static Ticket cancelTicket(Ticket t) {
         t = null;
         return t;
     }
