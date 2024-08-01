@@ -1,6 +1,6 @@
 package org.example;
 
-import java.util.Arrays;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Ticket {
@@ -19,7 +19,7 @@ public class Ticket {
 
     public Ticket() {
         this.id = count++;
-        this.date = "";
+        this.date = LocalDate.now().toString();
         this.total = 0;
         this.subtotal = 0;
         this.discount = 0;
@@ -28,9 +28,9 @@ public class Ticket {
         this.paymentMethod = "";
     }
 
-    public Ticket(String date, Product[] products, double amountReceived, String paymentMethod) {
+    public Ticket(Product[] products, double amountReceived, String paymentMethod) {
         this.id = count++;
-        this.date = date;
+        this.date = LocalDate.now().toString();
         this.products = products;
         total = 0;
         subtotal = 0;

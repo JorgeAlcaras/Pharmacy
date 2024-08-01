@@ -15,7 +15,7 @@ public class Main {
 
     static Ticket[] tickets = new Ticket[50];
 
-    static SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+    static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     public static void main(String[] args) {
 
@@ -41,7 +41,6 @@ public class Main {
 
         Ticket ticket = new Ticket();
         ticket.setClientName("Juan Perez");
-        ticket.setDate("2024/07/15");
         ticket.addProduct(1000001, 7);
         ticket.addProduct(1000002, 1000);
         ticket.addProduct(1000014, 1);
@@ -989,7 +988,7 @@ public class Main {
         }
         receptionNotes[count].setSupplier(suppliers[supplierID]);
 
-        System.out.print("Date(Write the date YYYY/MM/DD): ");
+        System.out.print("Date(Write the date YYYY-MM-DD): ");
         scanner.nextLine(); // pause
         receivedDate = scanner.nextLine();
         receptionNotes[count].setReceivedDate(receivedDate);
@@ -1016,7 +1015,7 @@ public class Main {
         for (ReceptionNote receptionNote : receptionNotes) {
             if (receptionNote != null) {
                 System.out.println("Show Reception Note");
-                System.out.print("Which Reception Note do you want to see? (Write the ID or YYYY/MM/DD)");
+                System.out.print("Which Reception Note do you want to see? (Write the ID or YYYY-MM-DD)");
                 scanner.nextLine(); //Pause
                 data = scanner.nextLine();
                 try {
