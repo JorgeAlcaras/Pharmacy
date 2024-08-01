@@ -4,11 +4,12 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class Ticket {
+    private static int count = 0;
+    private static int productCount = 0;
     int id;
     String date;
     String clientName;
     Product[] products = new Product[15];
-
     double total;
     double subtotal;
     double discount;
@@ -16,10 +17,7 @@ public class Ticket {
     double amountReturned;
     String paymentMethod;
 
-    private static int count = 0;
-    private static int productCount = 0;
-
-    public Ticket(){
+    public Ticket() {
         this.id = count++;
         this.date = "";
         this.total = 0;
@@ -30,7 +28,7 @@ public class Ticket {
         this.paymentMethod = "";
     }
 
-    public Ticket(String date, Product[] products,  double amountReceived, String paymentMethod){
+    public Ticket(String date, Product[] products, double amountReceived, String paymentMethod) {
         this.id = count++;
         this.date = date;
         this.products = products;
@@ -42,51 +40,52 @@ public class Ticket {
         this.paymentMethod = paymentMethod;
     }
 
-    public void setId(int id){
-        this.id = id;
-    }
-
     public int getId() {
         return id;
     }
 
-    public void setDate(String date){
-        this.date = date;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getDate(){
+    public String getDate() {
         return this.date;
     }
 
-    public void setClientName(String clientName){
-        this.clientName = clientName;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public String getClientName(){
+    public String getClientName() {
         return this.clientName;
     }
 
-    public void addProduct(int productID, int quantity){
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    public void addProduct(int productID, int quantity) {
         for (Product product : Main.inventory) {
-            if(product != null)
-                if(product.getId() == productID){
+            if (product != null)
+                if (product.getId() == productID) {
                     this.products[productCount] = product;
                     this.products[productCount].quantity = quantity;
                     subtotal += products[productCount].price * products[productCount].quantity;
-            }
+                    System.out.println(Arrays.toString(products));
+                }
         }
         productCount++;
     }
 
-    public Product[] getProducts(){
+    public Product[] getProducts() {
         return this.products;
     }
 
-    public void setAmountReceived(double amountReceived){
+    public void setAmountReceived(double amountReceived) {
         this.amountReceived = amountReceived;
     }
 
-    public void setPaymentMethod(String paymentMethod){
+    public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 
@@ -110,21 +109,17 @@ public class Ticket {
         ticket.append("------------------------------------\n");
         ticket.append("Products:\n");
 
+
         for (Product product : products) {
             if (product != null) {
-                ticket.append(String.format("%d%s %s %.2f - %.2f",
-                        product.quantity, product.units, product.name,
-                        product.price, product.price * product.quantity)).append("\n");
-            } else {
-                ticket.append("\n");
-                break;
+                ticket.append(String.format("%d%s %s %.2f - %.2f", product.quantity, product.units, product.name, product.price, product.price * product.quantity)).append("\n");
             }
         }
 
         ticket.append("------------------------------------\n");
         ticket.append(String.format("Subtotal: %.2f\n", subtotal));
         ticket.append(String.format("Discount: %.2f\n", discount));
-        ticket.append(String.format("Total: %.2f\n", total ));
+        ticket.append(String.format("Total: %.2f\n", total));
         ticket.append(String.format("Amount Received: %.2f\n", amountReceived));
         if (Objects.equals(paymentMethod, "Cash") || Objects.equals(paymentMethod, "cash")) {
             ticket.append(String.format("Amount Returned: %.2f\n", amountReturned));
