@@ -117,21 +117,21 @@ public class Main {
 
     public static void manageClients() {
 
-        do{
+        do {
             clearScreen();
             System.out.println("\n====== Pharmacy Yahualica ======");
             System.out.println("       = Manage Clients =");
             System.out.println("\n Select an activity:");
-            
+
             System.out.println("1- Add client");
             System.out.println("2- Update client");
             System.out.println("3- Delete client");
             System.out.println("4- Show client");
             System.out.println("\t5- Back");
-            
+
             System.out.print("   -> ");
             int option = scanner.nextInt();
-            
+
             switch (option) {
                 case 1:
                     addClient();
@@ -151,13 +151,13 @@ public class Main {
                 default:
                     break;
             }
-        }while(true);
+        } while (true);
     }
 
 
     public static void addClient() {
         int count = 0;
-        
+
         String name, email, phone, address;
 
         clearScreen();
@@ -309,8 +309,8 @@ public class Main {
         scanner.nextLine();
     }
 
-    public static void showClients(){
-        for(int i=0; clients[i]!=null; i++){
+    public static void showClients() {
+        for (int i = 0; clients[i] != null; i++) {
             System.out.println(clients[i].toString());
         }
 
@@ -468,7 +468,7 @@ public class Main {
                     break;
                 case 4:
                     System.out.print("Address: ");
-                    suppliers[idSupplier].setAddress(scanner.nextLine());;
+                    suppliers[idSupplier].setAddress(scanner.nextLine());
                     break;
                 case 5:
                     System.out.print("Company: ");
@@ -531,8 +531,8 @@ public class Main {
         scanner.nextLine();
     }
 
-    public static void showSuppliers(){
-        for(int i=0; suppliers[i]!=null; i++){
+    public static void showSuppliers() {
+        for (int i = 0; suppliers[i] != null; i++) {
             System.out.println(suppliers[i].toString());
         }
 
@@ -540,7 +540,6 @@ public class Main {
         scanner.nextLine();
         scanner.nextLine();
     }
-
 
 
     // Employees
@@ -755,7 +754,7 @@ public class Main {
         int choice;
         boolean editing = true;
         String name, units;
-        
+
         // String brand;
         // float price, cost;
         // boolean status;
@@ -860,7 +859,7 @@ public class Main {
                                 System.out.println("Max quantity");
                                 inventory[idProduct].setMax(scanner.nextInt());
                                 scanner.nextLine(); // pause
-                                break;    
+                                break;
                             case 9:
                                 System.out.println("Reorder Point");
                                 inventory[idProduct].setReorderPoint(scanner.nextInt());
@@ -1070,146 +1069,149 @@ public class Main {
 
 
     //start sell
-    public static void startSell(){
+    public static void startSell() {
         Ticket tiket = new Ticket();
 
-        do{
+        do {
             clearScreen();
             System.out.println("\n\n====== Pharmacy Yahualica ======");
             System.out.println("\n New sell");
-    
+
             System.out.println("1- Add product");
             System.out.println("2- Calcel product");
             System.out.println("3- Show current tiket");
             System.out.println("4- Finish tiket");
             System.out.println("5- Calcel tiket");
             System.out.println("\t0- Exit");
-    
+
             System.out.print("   -> ");
             int option = scanner.nextInt();
-    
+
             switch (option) {
                 case 1:
                     tiket = addTicketProduct(tiket);
-                break;
+                    break;
 
                 case 2:
                     tiket = cancelProduct(tiket);
-                break;
+                    break;
 
                 case 3:
-                System.out.println("\n -- Current tiket --\n\n");
+                    System.out.println("\n -- Current tiket --\n\n");
                     System.out.println(tiket.toString());
                     scanner.nextLine(); // pause
                     scanner.nextLine();
-                break;
+                    break;
 
                 case 4:
                     finishTicket(tiket);
 
-                break;
+                    break;
 
                 case 5:
                     tiket = cancelTiket(tiket);
-                break;
+                    break;
 
                 case 0:
-                break;
+                    break;
 
                 default:
-                break;
+                    break;
             }
 
-        }while(true);
+        } while (true);
 
 
-        
     }
 
-    public static Ticket addTicketProduct(Ticket tiket){
+    public static Ticket addTicketProduct(Ticket ticket) {
         int idProduct;
-        int quantity=0;
+        int quantity = 0;
 
         clearScreen();
         System.out.println("\n\n====== Pharmacy Yahualica ======");
         System.out.println("\n Add product");
 
-        do{
+        do {
             System.out.print("ID Product to add: ");
             idProduct = scanner.nextInt();
-    
+
             System.out.print("Quantity: ");
             quantity = scanner.nextInt();
-    
-    
-            tiket.addProduct(inventory[idProduct].getId(), quantity);
+            if (inventory[idProduct].getStock() < quantity) {
+                System.out.println("No hay suficiente stock para el producto: " + inventory[idProduct].getName());
+            }
+
+            ticket.addProduct(inventory[idProduct].getId(), quantity);
 
             System.out.println("Add another product? (y/n)");
             scanner.nextLine();
-            if(!scanner.nextLine().equals("y")){
+            if (!scanner.nextLine().equals("y")) {
                 break;
             }
 
-        }while(true);
+        } while (true);
 
 
-
-        return tiket;
+        return ticket;
     }
 
     public static Ticket cancelProduct(Ticket tiket) {
         Product[] product = tiket.getProducts();
         int idProduct;
 
-        do{
+        do {
             System.out.print("ID Product to delete: ");
             idProduct = scanner.nextInt();
 
-            for(int i=0; i<product.length; i++){
-                if(product[i].getId()==idProduct){
+            for (int i = 0; i < product.length; i++) {
+                if (product[i].getId() == idProduct) {
 
-                    tiket.setSubtotal(tiket.getSubtotal()-(product[i].getPrice()*product[i].getQuantity()));
-                    product[i]=null;
+                    tiket.setSubtotal(tiket.getSubtotal() - (product[i].getPrice() * product[i].getQuantity()));
+                    product[i] = null;
                     break;
                 }
             }
-    
+
 
             System.out.println("Delete another product? (y/n)");
             scanner.nextLine(); //pause
-            if(!scanner.nextLine().equals("y")){
+            if (!scanner.nextLine().equals("y")) {
                 break;
             }
 
-        }while(true);
+        } while (true);
 
         return tiket;
     }
 
 
-    public static Ticket finishTicket(Ticket ticket){
-        Product[] product = ticket.getProducts();
+    public static void finishTicket(Ticket ticket) {
+        Product[] products = ticket.getProducts();
 
 
+        for (Product product1 : products) {
+            if (product1 != null) {
+                if (inventory[product1.getId()].getStock() < product1.getQuantity()) {
+                    System.out.println("No hay suficiente stock para el producto: " + inventory[product1.getId()].getName());
+                    return;
+                } else {
+                    inventory[product1.getId()].setStock(inventory[product1.getId()].getStock() - product1.getQuantity());
+                }
 
-        for(int i=0; i<product.length; i++){
-            if(product[i]!=null){
-                System.out.println(product[i].getPrice()+" "+product[i].getQuantity());
             }
         }
 
+
         scanner.nextLine(); //pause
         scanner.nextLine(); //pause
-        return ticket;
     }
 
 
-
-    public static Ticket cancelTiket(Ticket t){
-        t=null;
+    public static Ticket cancelTiket(Ticket t) {
+        t = null;
         return t;
     }
-
 
 
     public static void clearScreen() {
