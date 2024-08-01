@@ -19,21 +19,21 @@ public class Main {
 
     public static void main(String[] args) {
 
-        inventory[0] = new Product("Paracetamol", "MarcaX", 2.00f, 3.00f, "Pz", 100, 20);
-        inventory[1] = new Product("Ibuprofen", "MarcaY", 4.00f, 5.00f, "Pz", 80, 20);
-        inventory[2] = new Product("Amoxicillin", "MarcaZ", 6.00f, 7.00f, "Pz", 50, 15);
-        inventory[3] = new Product("Omeprazole", "MarcaX", 5.00f, 6.00f, "Pz", 60, 15);
-        inventory[4] = new Product("Loratadine", "MarcaY", 3.00f, 4.00f, "Pz", 90, 25);
-        inventory[5] = new Product("Simvastatin", "MarcaZ", 10.00f, 11.00f, "Pz", 40, 10);
-        inventory[6] = new Product("Metformin", "MarcaX", 7.00f, 8.00f, "Pz", 70, 20);
-        inventory[7] = new Product("Aspirin", "MarcaY", 1.00f, 2.00f, "Pz", 120, 30);
-        inventory[8] = new Product("Sodium Chloride", "MarcaZ", 2.00f, 3.00f, "Pz", 200, 25);
-        inventory[9] = new Product("Diclofenac", "MarcaX", 4.50f, 5.50f, "Pz", 65, 18);
-        inventory[10] = new Product("Cetirizine", "MarcaY", 3.50f, 4.50f, "Pz", 75, 20);
-        inventory[11] = new Product("Metoprolol", "MarcaZ", 8.00f, 9.00f, "Pz", 35, 15);
-        inventory[12] = new Product("Insulin", "MarcaX", 15.00f, 16.00f, "Pz", 25, 10);
-        inventory[13] = new Product("Salbutamol", "MarcaY", 3.50f, 4.50f, "Pz", 60, 20);
-        inventory[14] = new Product("Warfarin", "MarcaZ", 6.50f, 7.50f, "Pz", 50, 15);
+        inventory[0] = new Product("Paracetamol", "MarcaX", 2.00f, 3.00f, "Pz", 100, 0, 20);
+        inventory[1] = new Product("Ibuprofen", "MarcaY", 4.00f, 5.00f, "Pz", 80, 0, 20);
+        inventory[2] = new Product("Amoxicillin", "MarcaZ", 6.00f, 7.00f, "Pz", 50, 0, 15);
+        inventory[3] = new Product("Omeprazole", "MarcaX", 5.00f, 6.00f, "Pz", 60, 0, 15);
+        inventory[4] = new Product("Loratadine", "MarcaY", 3.00f, 4.00f, "Pz", 90, 0, 25);
+        inventory[5] = new Product("Simvastatin", "MarcaZ", 10.00f, 11.00f, "Pz", 40, 0, 10);
+        inventory[6] = new Product("Metformin", "MarcaX", 7.00f, 8.00f, "Pz", 70, 0, 20);
+        inventory[7] = new Product("Aspirin", "MarcaY", 1.00f, 2.00f, "Pz", 120, 0, 30);
+        inventory[8] = new Product("Sodium Chloride", "MarcaZ", 2.00f, 3.00f, "Pz", 200, 0, 25);
+        inventory[9] = new Product("Diclofenac", "MarcaX", 4.50f, 5.50f, "Pz", 65, 0, 18);
+        inventory[10] = new Product("Cetirizine", "MarcaY", 3.50f, 4.50f, "Pz", 75, 0, 20);
+        inventory[11] = new Product("Metoprolol", "MarcaZ", 8.00f, 9.00f, "Pz", 35, 0, 15);
+        inventory[12] = new Product("Insulin", "MarcaX", 15.00f, 16.00f, "Pz", 25, 0, 10);
+        inventory[13] = new Product("Salbutamol", "MarcaY", 3.50f, 4.50f, "Pz", 60, 0, 20);
+        inventory[14] = new Product("Warfarin", "MarcaZ", 6.50f, 7.50f, "Pz", 50, 0, 15);
 
         suppliers[0] = new Supplier("Juan Perez", "hola@gmail.com", "333-333-3333", "Calle 123", "Farmacias Guadalajara");
 
@@ -814,8 +814,9 @@ public class Main {
                         System.out.println("5- Units");
                         System.out.println("6- Add Stock");
                         System.out.println("7- Stock");
-                        System.out.println("8- Reorder Point");
-                        System.out.println("9- Status");
+                        System.out.println("8- Max quantity");
+                        System.out.println("9- Reorder Point");
+                        System.out.println("10- Status");
                         System.out.println("\t0- Exit");
 
                         System.out.print("   -> ");
@@ -856,11 +857,16 @@ public class Main {
                                 scanner.nextLine(); // pause
                                 break;
                             case 8:
+                                System.out.println("Max quantity");
+                                inventory[idProduct].setMax(scanner.nextInt());
+                                scanner.nextLine(); // pause
+                                break;    
+                            case 9:
                                 System.out.println("Reorder Point");
                                 inventory[idProduct].setReorderPoint(scanner.nextInt());
                                 scanner.nextLine(); // pause
                                 break;
-                            case 9:
+                            case 10:
                                 System.out.println("Status (true/false)");
                                 inventory[idProduct].setStatus(scanner.nextBoolean());
                                 scanner.nextLine(); // pause
@@ -1084,10 +1090,11 @@ public class Main {
     
             switch (option) {
                 case 1:
-                    tiket = addTiketProduct(tiket);
+                    tiket = addTicketProduct(tiket);
                 break;
 
                 case 2:
+                    tiket = cancelProduct(tiket);
                 break;
 
                 case 3:
@@ -1098,11 +1105,12 @@ public class Main {
                 break;
 
                 case 4:
+                    finishTicket(tiket);
 
                 break;
 
                 case 5:
-                    cancelTiket(tiket);
+                    tiket = cancelTiket(tiket);
                 break;
 
                 case 0:
@@ -1118,7 +1126,7 @@ public class Main {
         
     }
 
-    public static Ticket addTiketProduct(Ticket tiket){
+    public static Ticket addTicketProduct(Ticket tiket){
         int idProduct;
         int quantity=0;
 
@@ -1136,8 +1144,9 @@ public class Main {
     
             tiket.addProduct(inventory[idProduct].getId(), quantity);
 
-            System.out.println("Add another product? \n1-Yes");
-            if(scanner.nextInt()!=1){
+            System.out.println("Add another product? (y/n)");
+            scanner.nextLine();
+            if(!scanner.nextLine().equals("y")){
                 break;
             }
 
@@ -1148,9 +1157,57 @@ public class Main {
         return tiket;
     }
 
+    public static Ticket cancelProduct(Ticket tiket) {
+        Product[] product = tiket.getProducts();
+        int idProduct;
 
-    public static void cancelTiket(Ticket t){
+        do{
+            System.out.print("ID Product to delete: ");
+            idProduct = scanner.nextInt();
+
+            for(int i=0; i<product.length; i++){
+                if(product[i].getId()==idProduct){
+
+                    tiket.setSubtotal(tiket.getSubtotal()-(product[i].getPrice()*product[i].getQuantity()));
+                    product[i]=null;
+                    break;
+                }
+            }
+    
+
+            System.out.println("Delete another product? (y/n)");
+            scanner.nextLine(); //pause
+            if(!scanner.nextLine().equals("y")){
+                break;
+            }
+
+        }while(true);
+
+        return tiket;
+    }
+
+
+    public static Ticket finishTicket(Ticket ticket){
+        Product[] product = ticket.getProducts();
+
+
+
+        for(int i=0; i<product.length; i++){
+            if(product[i]!=null){
+                System.out.println(product[i].getPrice()+" "+product[i].getQuantity());
+            }
+        }
+
+        scanner.nextLine(); //pause
+        scanner.nextLine(); //pause
+        return ticket;
+    }
+
+
+
+    public static Ticket cancelTiket(Ticket t){
         t=null;
+        return t;
     }
 
 

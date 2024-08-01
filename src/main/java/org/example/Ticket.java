@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Ticket {
     private static int count = 0;
-    private static int productCount = 0;
+    int productCount = 0;
     int id;
     String date;
     String clientName;
@@ -64,14 +64,30 @@ public class Ticket {
         this.clientName = clientName;
     }
 
+    public double getSubtotal() {
+        return this.subtotal;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public double getTotal() {
+        return this.total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
     public void addProduct(int productID, int quantity) {
+        // System.out.println(productCount);
         for (Product product : Main.inventory) {
             if (product != null)
                 if (product.getId() == productID) {
                     this.products[productCount] = product;
                     this.products[productCount].quantity = quantity;
                     subtotal += products[productCount].price * products[productCount].quantity;
-                    System.out.println(Arrays.toString(products));
                 }
         }
         productCount++;

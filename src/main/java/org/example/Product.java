@@ -12,6 +12,7 @@ public class Product {
     String units; //Unidades de medida
     boolean status;
     int stock;
+    int max;
     int reorderPoint;
     double reorderPointCost;
 
@@ -25,11 +26,12 @@ public class Product {
         this.units = "pz";
         this.status = false;
         this.stock = 0;
+        this.max = 0;
         this.reorderPoint = 0;
         this.reorderPointCost = 0;
     }
 
-    public Product(String name, String brand, float cost, float price, String units, int stock, int reorderPoint) {
+    public Product(String name, String brand, float cost, float price, String units, int stock, int max, int reorderPoint) {
         this.id = count++;
         this.name = name;
         this.barCode = 1000000 + count;
@@ -39,6 +41,7 @@ public class Product {
         this.brand = brand;
         this.status = true;
         this.stock = stock;
+        this.max = max;
         this.reorderPoint = reorderPoint;
         this.reorderPointCost = reorderPoint * price;
     }
@@ -52,6 +55,7 @@ public class Product {
         this.units = units;
         this.status = true;
         this.stock = 0;
+        this.max = 0;
         this.reorderPoint = 0;
         this.reorderPointCost = 0;
     }
@@ -124,6 +128,14 @@ public class Product {
         this.stock = stock;
     }
 
+    public int getMax() {
+        return max;
+    }
+
+    public void setMax(int max) {
+        this.max = max;
+    }
+
     public int getReorderPoint() {
         return reorderPoint;
     }
@@ -146,6 +158,7 @@ public class Product {
                 "Units: " + units + "\n" +
                 "Status: " + status + "\n" +
                 "Stock: " + stock + "\n" +
+                "Max quantity: " + max + "\n" +
                 "Reorder Point: " + reorderPoint + "\n" +
                 "Reorder Point Cost: " + reorderPointCost + "\n";
     }
