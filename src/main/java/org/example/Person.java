@@ -8,6 +8,26 @@ public class Person {
     String address;
     boolean status;
 
+    private static int count = 0;
+
+    public Person(){
+        this.id = count++;
+        this.name = "";
+        this.email = "";
+        this.phone = "";
+        this.address = "";
+        this.status = true;
+    }
+
+    public Person(String name, String email, String phone, String address){
+        this.id = count++;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.status = true;
+    }
+
     public void setId(int id){
         this.id = id;
     }

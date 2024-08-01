@@ -10,6 +10,7 @@ public class Main {
     static Product[] inventory = new Product[15];
     static Supplier[] suppliers = new Supplier[50];
     static Employee[] employees = new Employee[50];
+    static Person[] clients = new Person[50];
     static ReceptionNote[] receptionNotes = new ReceptionNote[50];
 
     static Ticket[] tickets = new Ticket[50];
@@ -63,7 +64,7 @@ public class Main {
 
         System.out.println("1- Start a sale (not working)");
         System.out.println("2- Manage Products");
-        System.out.println("3- Manage Clients (not working)");
+        System.out.println("3- Manage Clients");
         System.out.println("4- Manage Suppliers");
         System.out.println("5- Manage Employees");
         System.out.println("6- Report Inventory");
@@ -75,7 +76,7 @@ public class Main {
 
         switch (option) {
             case 1:
-
+                startSell();
                 break;
 
             case 2:
@@ -83,7 +84,7 @@ public class Main {
                 break;
 
             case 3:
-                // manageClients();
+                manageClients();
                 break;
 
             case 4:
@@ -116,41 +117,206 @@ public class Main {
 
     public static void manageClients() {
 
+        do{
+            clearScreen();
+            System.out.println("\n====== Pharmacy Yahualica ======");
+            System.out.println("       = Manage Clients =");
+            System.out.println("\n Select an activity:");
+            
+            System.out.println("1- Add client");
+            System.out.println("2- Update client");
+            System.out.println("3- Delete client");
+            System.out.println("4- Show client");
+            System.out.println("\t5- Back");
+            
+            System.out.print("   -> ");
+            int option = scanner.nextInt();
+            
+            switch (option) {
+                case 1:
+                    addClient();
+                    break;
+                case 2:
+                    updateClients();
+                    break;
+                case 3:
+                    deleteClient();
+                    break;
+                case 4:
+                    showClients();
+                    break;
+                case 5:
+                    mainMenu();
+                    break;
+                default:
+                    break;
+            }
+        }while(true);
+    }
+
+
+    public static void addClient() {
+        int count = 0;
+        
+        String name, email, phone, address;
+
         clearScreen();
-
         System.out.println("\n====== Pharmacy Yahualica ======");
-        System.out.println("       = Manage Clients =");
-        System.out.println("\n Select an activity:");
+        System.out.println("      = Add client =");
 
-        System.out.println("1- Add client");
-        System.out.println("2- Update client");
-        System.out.println("3- Delete client");
-        System.out.println("\t4- Back");
+        // pause
+        scanner.nextLine();
 
-        System.out.print("   -> ");
-        int option = scanner.nextInt();
+        System.out.print("Nombre: ");
+        name = scanner.nextLine();
 
-        switch (option) {
-            case 1:
+        System.out.print("E-mail: ");
+        email = scanner.nextLine();
 
+        System.out.print("Phone: ");
+        phone = scanner.nextLine();
+
+        System.out.print("Address: ");
+        address = scanner.nextLine();
+
+        for (int i = 0; i < clients.length; i++) {
+            if (clients[i] == null) {
+                count = i;
                 break;
-
-            case 2:
-
-                break;
-
-            case 3:
-
-                break;
-
-            case 4:
-                mainMenu();
-                break;
-
-            default:
-                break;
+            }
         }
 
+        clients[count] = new Person(name, email, phone, address);
+
+        System.out.println("\n\tClient added: ");
+        System.out.println(clients[count].toString());
+
+        // pause
+        scanner.nextLine();
+    }
+
+    public static void updateClients() {
+        int idClients;
+        int choice;
+
+        boolean editing = true;
+
+        clearScreen();
+        System.out.println("\n====== Pharmacy Yahualica ======");
+        System.out.println("      = Update client =");
+
+        System.out.println("id client to update");
+        idClients = scanner.nextInt();
+
+        System.out.println("Is this the client?\n");
+        System.out.println(clients[idClients].toString());
+        System.out.println("\n1- Yes\t0- No");
+        System.out.print("   -> ");
+        choice = scanner.nextInt();
+
+        if (choice == 0) {
+            updateEmployee();
+        }
+
+        // pause
+        scanner.nextLine();
+
+        editing = true;
+
+        while (editing) {
+            System.out.println("\nWhich field do you want to edit?");
+            System.out.println("1- Name");
+            System.out.println("2- E-mail");
+            System.out.println("3- Phone");
+            System.out.println("4- Address");
+            System.out.println("\t0- Exit edit mode");
+
+            System.out.print("   -> ");
+            choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Nombre: ");
+                    clients[idClients].setName(scanner.nextLine());
+                    break;
+                case 2:
+                    System.out.print("E-mail: ");
+                    clients[idClients].setEmail(scanner.nextLine());
+                    break;
+                case 3:
+                    System.out.print("Phone: ");
+                    clients[idClients].setPhone(scanner.nextLine());
+                    break;
+                case 4:
+                    System.out.print("Address: ");
+                    clients[idClients].setAddress(scanner.nextLine());
+                    break;
+                case 0:
+                    editing = false;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+
+        clearScreen();
+        System.out.println("Updated Client Info:");
+        System.out.println(clients[idClients].toString());
+
+        // pause
+        scanner.nextLine();
+    }
+
+    public static void deleteClient() {
+        int idClients;
+        int choice;
+
+        boolean editing = true;
+
+        clearScreen();
+        System.out.println("\n====== Pharmacy Yahualica ======");
+        System.out.println("      = Delete client =");
+
+        editing = true;
+
+        while (editing) {
+            System.out.println("id client to delete");
+            idClients = scanner.nextInt();
+
+            System.out.println("Is this the client?\n");
+            System.out.println(clients[idClients].toString());
+            System.out.println("\n1- Yes\t0- No");
+            System.out.print("   -> ");
+            choice = scanner.nextInt();
+
+            if (choice == 1) {
+                employees[idClients] = null;
+                System.out.println("Client deleted");
+            }
+
+            System.out.println("Delete another client");
+            System.out.println("1- Yes\t0-No");
+            choice = scanner.nextInt();
+
+            if (choice == 0) {
+                editing = false;
+            }
+
+        }
+
+        // pause
+        scanner.nextLine();
+    }
+
+    public static void showClients(){
+        for(int i=0; clients[i]!=null; i++){
+            System.out.println(clients[i].toString());
+        }
+
+        // pause
+        scanner.nextLine();
+        scanner.nextLine();
     }
 
     // Suplier
@@ -188,7 +354,11 @@ public class Main {
                     deleteSupplier();
                     break;
 
-                case 4:
+                case 4: //Show all suppliers
+                    showSuppliers();
+                    break;
+
+                case 5:
                     mainMenu();
                     break;
 
@@ -236,7 +406,7 @@ public class Main {
         suppliers[count] = new Supplier(name, email, phone, address, company);
 
         System.out.println("\n\tSupplier added: ");
-        System.out.println(suppliers[count]);
+        System.out.println(suppliers[count].toString());
 
         // pause
         scanner.nextLine();
@@ -256,7 +426,7 @@ public class Main {
         idSupplier = scanner.nextInt();
 
         System.out.println("Is this the supplier?\n");
-        System.out.println(suppliers[idSupplier]);
+        System.out.println(suppliers[idSupplier].toString());
         System.out.println("\n1- Yes\t0- No");
         System.out.print("   -> ");
         choice = scanner.nextInt();
@@ -286,23 +456,23 @@ public class Main {
             switch (choice) {
                 case 1:
                     System.out.print("Nombre: ");
-                    suppliers[idSupplier].name = scanner.nextLine();
+                    suppliers[idSupplier].setName(scanner.nextLine());
                     break;
                 case 2:
                     System.out.print("E-mail: ");
-                    suppliers[idSupplier].email = scanner.nextLine();
+                    suppliers[idSupplier].setEmail(scanner.nextLine());
                     break;
                 case 3:
                     System.out.print("Phone: ");
-                    suppliers[idSupplier].phone = scanner.nextLine();
+                    suppliers[idSupplier].setPhone(scanner.nextLine());
                     break;
                 case 4:
                     System.out.print("Address: ");
-                    suppliers[idSupplier].address = scanner.nextLine();
+                    suppliers[idSupplier].setAddress(scanner.nextLine());;
                     break;
                 case 5:
                     System.out.print("Company: ");
-                    suppliers[idSupplier].company = scanner.nextLine();
+                    suppliers[idSupplier].setCompany(scanner.nextLine());
                     break;
                 case 0:
                     editing = false;
@@ -314,7 +484,7 @@ public class Main {
 
         clearScreen();
         System.out.println("Updated Supplier Info:");
-        System.out.println(suppliers[idSupplier]);
+        System.out.println(suppliers[idSupplier].toString());
 
         // pause
         scanner.nextLine();
@@ -337,7 +507,7 @@ public class Main {
             idSupplier = scanner.nextInt();
 
             System.out.println("Is this the supplier?\n");
-            System.out.println(suppliers[idSupplier]);
+            System.out.println(suppliers[idSupplier].toString());
             System.out.println("\n1- Yes\t0- No");
             System.out.print("   -> ");
             choice = scanner.nextInt();
@@ -360,6 +530,18 @@ public class Main {
         // pause
         scanner.nextLine();
     }
+
+    public static void showSuppliers(){
+        for(int i=0; suppliers[i]!=null; i++){
+            System.out.println(suppliers[i].toString());
+        }
+
+        // pause
+        scanner.nextLine();
+        scanner.nextLine();
+    }
+
+
 
     // Employees
 
@@ -442,7 +624,7 @@ public class Main {
         employees[count] = new Employee(name, email, phone, address, role);
 
         System.out.println("\n\tSupplier added: ");
-        System.out.println(employees[count]);
+        System.out.println(employees[count].toString());
 
         // pause
         scanner.nextLine();
@@ -462,7 +644,7 @@ public class Main {
         idEmployee = scanner.nextInt();
 
         System.out.println("Is this the employee?\n");
-        System.out.println(employees[idEmployee]);
+        System.out.println(employees[idEmployee].toString());
         System.out.println("\n1- Yes\t0- No");
         System.out.print("   -> ");
         choice = scanner.nextInt();
@@ -492,23 +674,23 @@ public class Main {
             switch (choice) {
                 case 1:
                     System.out.print("Nombre: ");
-                    employees[idEmployee].name = scanner.nextLine();
+                    employees[idEmployee].setName(scanner.nextLine());
                     break;
                 case 2:
                     System.out.print("E-mail: ");
-                    employees[idEmployee].email = scanner.nextLine();
+                    employees[idEmployee].setEmail(scanner.nextLine());
                     break;
                 case 3:
                     System.out.print("Phone: ");
-                    employees[idEmployee].phone = scanner.nextLine();
+                    employees[idEmployee].setPhone(scanner.nextLine());
                     break;
                 case 4:
                     System.out.print("Address: ");
-                    employees[idEmployee].address = scanner.nextLine();
+                    employees[idEmployee].setAddress(scanner.nextLine());
                     break;
                 case 5:
                     System.out.print("Role: ");
-                    employees[idEmployee].role = scanner.nextLine();
+                    employees[idEmployee].setRole(scanner.nextLine());
                     break;
                 case 0:
                     editing = false;
@@ -520,7 +702,7 @@ public class Main {
 
         clearScreen();
         System.out.println("Updated Employee Info:");
-        System.out.println(suppliers[idEmployee]);
+        System.out.println(suppliers[idEmployee].toString());
 
         // pause
         scanner.nextLine();
@@ -543,7 +725,7 @@ public class Main {
             idEmployee = scanner.nextInt();
 
             System.out.println("Is this the employee?\n");
-            System.out.println(suppliers[idEmployee]);
+            System.out.println(suppliers[idEmployee].toString());
             System.out.println("\n1- Yes\t0- No");
             System.out.print("   -> ");
             choice = scanner.nextInt();
@@ -572,10 +754,12 @@ public class Main {
         int idProduct;
         int choice;
         boolean editing = true;
-        String name, units, brand;
-        float price, cost;
-        boolean status;
-        int stock, reorderPoint;
+        String name, units;
+        
+        // String brand;
+        // float price, cost;
+        // boolean status;
+        // int stock, reorderPoint;
 
         do {
             clearScreen();
@@ -610,7 +794,7 @@ public class Main {
                     inventory[count] = new Product(name, units);
 
                     System.out.println("\n\tProduct added");
-                    System.out.println(inventory[count]);
+                    System.out.println(inventory[count].toString());
 
                     scanner.nextLine(); // pause
                     scanner.nextLine(); // pause
@@ -700,7 +884,7 @@ public class Main {
                     System.out.print("ID Product to delete: ");
                     idProduct = scanner.nextInt();
                     System.out.println("\nIs this the product");
-                    System.out.println(inventory[idProduct]);
+                    System.out.println(inventory[idProduct].toString());
                     System.out.println("\n1- Yes\t2- No");
                     System.out.print("   -> ");
                     choice = scanner.nextInt();
@@ -878,8 +1062,104 @@ public class Main {
         return filteredTickets;
     }
 
+
+    //start sell
+    public static void startSell(){
+        Ticket tiket = new Ticket();
+
+        do{
+            clearScreen();
+            System.out.println("\n\n====== Pharmacy Yahualica ======");
+            System.out.println("\n New sell");
+    
+            System.out.println("1- Add product");
+            System.out.println("2- Calcel product");
+            System.out.println("3- Show current tiket");
+            System.out.println("4- Finish tiket");
+            System.out.println("5- Calcel tiket");
+            System.out.println("\t0- Exit");
+    
+            System.out.print("   -> ");
+            int option = scanner.nextInt();
+    
+            switch (option) {
+                case 1:
+                    tiket = addTiketProduct(tiket);
+                break;
+
+                case 2:
+                break;
+
+                case 3:
+                System.out.println("\n -- Current tiket --\n\n");
+                    System.out.println(tiket.toString());
+                    scanner.nextLine(); // pause
+                    scanner.nextLine();
+                break;
+
+                case 4:
+
+                break;
+
+                case 5:
+                    cancelTiket(tiket);
+                break;
+
+                case 0:
+                break;
+
+                default:
+                break;
+            }
+
+        }while(true);
+
+
+        
+    }
+
+    public static Ticket addTiketProduct(Ticket tiket){
+        int idProduct;
+        int quantity=0;
+
+        clearScreen();
+        System.out.println("\n\n====== Pharmacy Yahualica ======");
+        System.out.println("\n Add product");
+
+        do{
+            System.out.print("ID Product to add: ");
+            idProduct = scanner.nextInt();
+    
+            System.out.print("Quantity: ");
+            quantity = scanner.nextInt();
+    
+    
+            tiket.addProduct(inventory[idProduct].getId(), quantity);
+
+            System.out.println("Add another product? \n1-Yes");
+            if(scanner.nextInt()!=1){
+                break;
+            }
+
+        }while(true);
+
+
+
+        return tiket;
+    }
+
+
+    public static void cancelTiket(Ticket t){
+        t=null;
+    }
+
+
+
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
+
 }
+
+

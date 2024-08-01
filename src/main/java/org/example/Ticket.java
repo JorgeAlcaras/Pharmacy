@@ -66,10 +66,10 @@ public class Ticket {
         return this.clientName;
     }
 
-    public void addProduct(int productBarCode, int quantity){
+    public void addProduct(int productID, int quantity){
         for (Product product : Main.inventory) {
             if(product != null)
-                if(product.barCode == productBarCode){
+                if(product.getId() == productID){
                     this.products[productCount] = product;
                     this.products[productCount].quantity = quantity;
                     subtotal += products[productCount].price * products[productCount].quantity;

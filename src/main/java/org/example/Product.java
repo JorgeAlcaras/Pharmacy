@@ -56,6 +56,10 @@ public class Product {
         this.reorderPointCost = 0;
     }
 
+    public int getId(){
+        return this.id;
+    }
+
     public float getPrice() {
         return this.price;
     }
