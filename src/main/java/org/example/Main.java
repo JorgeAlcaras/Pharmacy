@@ -61,7 +61,7 @@ public class Main {
         System.out.println("\n\n====== Pharmacy Yahualica ======");
         System.out.println("\n Select an activity");
 
-        System.out.println("1- Start a sale (not working)");
+        System.out.println("1- Start a sale");
         System.out.println("2- Manage Products");
         System.out.println("3- Manage Clients");
         System.out.println("4- Manage Suppliers");
@@ -96,9 +96,11 @@ public class Main {
 
             case 6:
                 getInventory();
+                scanner.nextLine();
                 break;
             case 7:
                 receptionNoteOptions();
+                scanner.nextLine();
                 break;
             case 8:
                 try {
@@ -922,6 +924,10 @@ public class Main {
         }
         System.out.println("Total products: " + count);
         System.out.println("Total cost: " + totalCost);
+
+        scanner.nextLine();
+        scanner.nextLine();
+        mainMenu();
     }
 
     public static void receptionNoteOptions() {
@@ -1006,6 +1012,9 @@ public class Main {
             }
             productNum++;
         }
+
+        //pause
+        scanner.nextLine();
     }
 
     public static void showReceptionNote() {
@@ -1032,6 +1041,7 @@ public class Main {
                 }
             }
         }
+        scanner.nextLine();
     }
 
     public static void reportSales() throws ParseException {
@@ -1112,6 +1122,7 @@ public class Main {
                     break;
 
                 case 0:
+                    mainMenu();
                     break;
 
                 default:
@@ -1139,15 +1150,16 @@ public class Main {
             quantity = scanner.nextInt();
             if (inventory[idProduct].getStock() < quantity) {
                 System.out.println("No hay suficiente stock para el producto: " + inventory[idProduct].getName());
+            }else{
+                ticket.addProduct(inventory[idProduct].getId(), quantity);
+    
+                System.out.println("Add another product? (y/n)");
+                scanner.nextLine();
+                if (!scanner.nextLine().equals("y")) {
+                    break;
+                }
             }
 
-            ticket.addProduct(inventory[idProduct].getId(), quantity);
-
-            System.out.println("Add another product? (y/n)");
-            scanner.nextLine();
-            if (!scanner.nextLine().equals("y")) {
-                break;
-            }
 
         } while (true);
 
@@ -1193,7 +1205,7 @@ public class Main {
             if (product1 != null) {
                 if (inventory[product1.getId()].getStock() < product1.getQuantity()) {
                     System.out.println("No hay suficiente stock para el producto: " + inventory[product1.getId()].getName());
-                    return;
+                    break;
                 } else {
                     inventory[product1.getId()].setStock(inventory[product1.getId()].getStock() - product1.getQuantity());
                 }
