@@ -35,7 +35,7 @@ public class Main {
         inventory[13] = new Product("Salbutamol", "MarcaY", 3.50f, 4.50f, "Pz", 60, 0, 20);
         inventory[14] = new Product("Warfarin", "MarcaZ", 6.50f, 7.50f, "Pz", 50, 0, 15);
 
-        suppliers[0] = new Supplier("Juan Perez", "hola@gmail.com", "333-333-3333", "Calle 123", "Farmacias Guadalajara");
+        suppliers[0] = new Supplier("Juan Perez", "333-333-3333", "JU493R35RFC4", "Farmacias Guadalajara");
 
         System.out.println(suppliers[0]);
 
@@ -45,7 +45,6 @@ public class Main {
         ticket.addProduct(1000002, 1000);
         ticket.addProduct(1000014, 1);
         ticket.addProduct(1000011, 4);
-        ticket.setPaymentMethod("Cash");
         ticket.setAmountReceived(10000);
 
         tickets[0] = ticket;
@@ -95,7 +94,7 @@ public class Main {
                 break;
 
             case 6:
-                getInventory();
+                inventoryReports();
                 break;
             case 7:
                 receptionNoteOptions();
@@ -157,7 +156,7 @@ public class Main {
     public static void addClient() {
         int count = 0;
 
-        String name, email, phone, address;
+        String name, phone, rfc;
 
         clearScreen();
         System.out.println("\n====== Pharmacy Yahualica ======");
@@ -169,14 +168,11 @@ public class Main {
         System.out.print("Nombre: ");
         name = scanner.nextLine();
 
-        System.out.print("E-mail: ");
-        email = scanner.nextLine();
-
         System.out.print("Phone: ");
         phone = scanner.nextLine();
 
-        System.out.print("Address: ");
-        address = scanner.nextLine();
+        System.out.print("RFC: ");
+        rfc = scanner.nextLine();
 
         for (int i = 0; i < clients.length; i++) {
             if (clients[i] == null) {
@@ -185,7 +181,7 @@ public class Main {
             }
         }
 
-        clients[count] = new Person(name, email, phone, address);
+        clients[count] = new Person(name, phone, rfc);
 
         System.out.println("\n\tClient added: ");
         System.out.println(clients[count].toString());
@@ -225,9 +221,8 @@ public class Main {
         while (editing) {
             System.out.println("\nWhich field do you want to edit?");
             System.out.println("1- Name");
-            System.out.println("2- E-mail");
-            System.out.println("3- Phone");
-            System.out.println("4- Address");
+            System.out.println("2- Phone");
+            System.out.println("3- RFC");
             System.out.println("\t0- Exit edit mode");
 
             System.out.print("   -> ");
@@ -240,16 +235,12 @@ public class Main {
                     clients[idClients].setName(scanner.nextLine());
                     break;
                 case 2:
-                    System.out.print("E-mail: ");
-                    clients[idClients].setEmail(scanner.nextLine());
-                    break;
-                case 3:
                     System.out.print("Phone: ");
                     clients[idClients].setPhone(scanner.nextLine());
                     break;
-                case 4:
-                    System.out.print("Address: ");
-                    clients[idClients].setAddress(scanner.nextLine());
+                case 3:
+                    System.out.print("RFC: ");
+                    clients[idClients].setRfc(scanner.nextLine());
                     break;
                 case 0:
                     editing = false;
@@ -371,7 +362,7 @@ public class Main {
     public static void addSupplier() {
         int count = 0;
 
-        String name, email, phone, address, company;
+        String name, phone, rfc, company;
 
         clearScreen();
         System.out.println("\n====== Pharmacy Yahualica ======");
@@ -383,14 +374,11 @@ public class Main {
         System.out.print("Nombre: ");
         name = scanner.nextLine();
 
-        System.out.print("E-mail: ");
-        email = scanner.nextLine();
-
         System.out.print("Phone: ");
         phone = scanner.nextLine();
 
-        System.out.print("Address: ");
-        address = scanner.nextLine();
+        System.out.print("RFC: ");
+        rfc = scanner.nextLine();
 
         System.out.print("Company: ");
         company = scanner.nextLine();
@@ -402,7 +390,7 @@ public class Main {
             }
         }
 
-        suppliers[count] = new Supplier(name, email, phone, address, company);
+        suppliers[count] = new Supplier(name, phone, rfc, company);
 
         System.out.println("\n\tSupplier added: ");
         System.out.println(suppliers[count].toString());
@@ -442,10 +430,9 @@ public class Main {
         while (editing) {
             System.out.println("\nWhich field do you want to edit?");
             System.out.println("1- Name");
-            System.out.println("2- E-mail");
-            System.out.println("3- Phone");
-            System.out.println("4- Address");
-            System.out.println("5- Company");
+            System.out.println("2- Phone");
+            System.out.println("3- RFC");
+            System.out.println("4- Company");
             System.out.println("\t0- Exit edit mode");
 
             System.out.print("   -> ");
@@ -458,18 +445,14 @@ public class Main {
                     suppliers[idSupplier].setName(scanner.nextLine());
                     break;
                 case 2:
-                    System.out.print("E-mail: ");
-                    suppliers[idSupplier].setEmail(scanner.nextLine());
-                    break;
-                case 3:
                     System.out.print("Phone: ");
                     suppliers[idSupplier].setPhone(scanner.nextLine());
                     break;
-                case 4:
-                    System.out.print("Address: ");
-                    suppliers[idSupplier].setAddress(scanner.nextLine());
+                case 3:
+                    System.out.print("RFC: ");
+                    suppliers[idSupplier].setRfc(scanner.nextLine());
                     break;
-                case 5:
+                case 4:
                     System.out.print("Company: ");
                     suppliers[idSupplier].setCompany(scanner.nextLine());
                     break;
@@ -588,7 +571,7 @@ public class Main {
     public static void addEmployee() {
         int count = 0;
 
-        String name, email, phone, address, role;
+        String name, phone, rfc, role;
 
         clearScreen();
         System.out.println("\n====== Pharmacy Yahualica ======");
@@ -600,14 +583,11 @@ public class Main {
         System.out.print("Nombre: ");
         name = scanner.nextLine();
 
-        System.out.print("E-mail: ");
-        email = scanner.nextLine();
-
         System.out.print("Phone: ");
         phone = scanner.nextLine();
 
-        System.out.print("Address: ");
-        address = scanner.nextLine();
+        System.out.print("RFC: ");
+        rfc = scanner.nextLine();
 
         System.out.print("Role: ");
         role = scanner.nextLine();
@@ -619,7 +599,7 @@ public class Main {
             }
         }
 
-        employees[count] = new Employee(name, email, phone, address, role);
+        employees[count] = new Employee(name, phone, rfc, role);
 
         System.out.println("\n\tSupplier added: ");
         System.out.println(employees[count].toString());
@@ -675,18 +655,14 @@ public class Main {
                     employees[idEmployee].setName(scanner.nextLine());
                     break;
                 case 2:
-                    System.out.print("E-mail: ");
-                    employees[idEmployee].setEmail(scanner.nextLine());
-                    break;
-                case 3:
                     System.out.print("Phone: ");
                     employees[idEmployee].setPhone(scanner.nextLine());
                     break;
-                case 4:
-                    System.out.print("Address: ");
-                    employees[idEmployee].setAddress(scanner.nextLine());
+                case 3:
+                    System.out.print("RFC: ");
+                    employees[idEmployee].setRfc(scanner.nextLine());
                     break;
-                case 5:
+                case 4:
                     System.out.print("Role: ");
                     employees[idEmployee].setRole(scanner.nextLine());
                     break;
@@ -909,6 +885,37 @@ public class Main {
         } while (true);
     }
 
+
+    public static void inventoryReports() {
+        int option;
+
+        do {
+            clearScreen();
+            System.out.println("\n====== Pharmacy Yahualica ======");
+            System.out.println("      = Inventory Reports =");
+            System.out.println("\n Select an activity:");
+            System.out.println("1- Inventory Cost Report");
+            System.out.println("2- Inventory Stock Report");
+            System.out.println("\t3- Back");
+            System.out.print("   -> ");
+            option = scanner.nextInt();
+
+            switch (option) {
+                case 1:
+                    inventoryCostReport();
+                    break;
+                case 2:
+                    getInventory();
+                    break;
+                case 3:
+                    mainMenu();
+                    break;
+                default:
+                    break;
+            }
+        } while (true);
+    }
+
     public static void getInventory() {
         int count = 0;
         float totalCost = 0;
@@ -922,6 +929,39 @@ public class Main {
         }
         System.out.println("Total products: " + count);
         System.out.println("Total cost: " + totalCost);
+    }
+
+    public static void inventoryCostReport() {
+        int count = 0;
+        float totalCost = 0;
+        int totalPieces = 0;
+        StringBuilder report = new StringBuilder();
+
+        for (Product product : inventory) {
+            if (product != null) {
+                report.append(String.format("%d%s %s %.2f %.2f",
+                        product.stock, product.units, product.name, product.cost, (product.stock * product.cost))).append("\n");
+                totalCost += (product.cost * product.stock);
+                totalPieces += product.stock;
+                count++;
+            }
+        }
+        System.out.println("\n====== Pharmacy Yahualica ======");
+        System.out.println("        = Inventory Report =");
+        System.out.println("==================================");
+        System.out.println("Date: " + sdf.format(new Date()));
+        System.out.println("==================================");
+        System.out.println("Stock Units Name  Cost  Total Cost");
+        System.out.println("==================================");
+        System.out.print(report);
+        System.out.println("==================================");
+        System.out.println("Total product: " + count);
+        System.out.println("Total pieces: " + totalPieces);
+        System.out.println("Total cost: " + totalCost);
+        System.out.println("==================================");
+
+        // pause
+        scanner.nextLine();
     }
 
     public static void receptionNoteOptions() {
@@ -1040,10 +1080,10 @@ public class Main {
 
         System.out.println("\n====== Pharmacy Yahualica ======");
         System.out.println("        = Sales Report =");
-        System.out.print("Escribe la fecha de inicio: ");
+        System.out.print("Escribe la fecha de inicio (YYYY-MM-DD): ");
         scanner.nextLine();
         startDate = scanner.nextLine();
-        System.out.print("Escribe la fecha de final: ");
+        System.out.print("Escribe la fecha de final (YYYY-MM-DD): ");
         endDate = scanner.nextLine();
 
         List<Ticket> filteredTickets = filterTicketsByDateRange(sdf.parse(startDate), sdf.parse(endDate));

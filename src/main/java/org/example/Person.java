@@ -1,114 +1,99 @@
 package org.example;
 
 public class Person {
+    private static int count = 0;
     int id;
     String name;
-    String email;
     String phone;
-    String address;
+    String rfc;
     boolean status;
 
-    private static int count = 0;
-
-    public Person(){
+    public Person() {
         this.id = count++;
         this.name = "";
-        this.email = "";
         this.phone = "";
-        this.address = "";
+        this.rfc = "";
         this.status = true;
     }
 
-    public Person(String name, String email, String phone, String address){
+    public Person(String name, String phone, String rfc) {
         this.id = count++;
         this.name = name;
-        this.email = email;
         this.phone = phone;
-        this.address = address;
+        this.rfc = rfc;
         this.status = true;
     }
 
-    public void setId(int id){
-        this.id = id;
-    }
-
-    public int getId(){
+    public int getId() {
         return this.id;
     }
 
-    public void setName(String name){
-        this.name = name;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
-    public void setEmail(String email){
-        this.email = email;
-    }
-    
-    public String getEmail() {
-        return email;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public String getRfc() {
+        return this.rfc;
+    }
+
+    public void setRfc(String rfc) {
+        this.rfc = rfc;
     }
 
     public String getPhone() {
         return phone;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getAddress() {
-        return address;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     @Override
     public String toString() {
         return "ID: " + id + "\n" +
                 "Name: " + name + "\n" +
-                "Email: " + email + "\n" +
                 "Phone: " + phone + "\n" +
-                "Address: " + address + "\n";
+                "RFC: " + rfc + "\n";
     }
 }
 
 class Supplier extends Person {
+    private static int count = 0;
     String company;
 
-    private static int count = 0;
 
-
-    public Supplier(){
+    public Supplier() {
         this.id = count++;
         this.name = "";
-        this.email = "";
         this.phone = "";
-        this.address = "";
+        this.rfc = "";
         this.company = "";
         this.status = true;
     }
 
-    public Supplier(String name, String email, String phone, String address, String company){
+    public Supplier(String name, String phone, String rfc, String company) {
         this.id = count++;
         this.name = name;
-        this.email = email;
         this.phone = phone;
-        this.address = address;
+        this.rfc = rfc;
         this.company = company;
         this.status = true;
     }
-    public void setCompany(String company){
-        this.company = company;
+
+    public String getCompany() {
+        return this.company;
     }
 
-    public String getCompany(){
-        return this.company;
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     @Override
@@ -118,36 +103,33 @@ class Supplier extends Person {
 }
 
 class Employee extends Person {
+    private static int count = 0;
     String role;
 
-    private static int count = 0;
-
-    public Employee(){
+    public Employee() {
         this.id = count++;
         this.name = "";
-        this.email = "";
         this.phone = "";
-        this.address = "";
+        this.rfc = "";
         this.role = "";
         this.status = true;
     }
 
-    public Employee(String name, String email, String phone, String address, String role){
+    public Employee(String name, String phone, String rfc, String role) {
         this.id = count++;
         this.name = name;
-        this.email = email;
         this.phone = phone;
-        this.address = address;
+        this.rfc = rfc;
         this.role = role;
         this.status = true;
     }
 
-    public void setRole(String position){
-        this.role = position;
+    public String getRole() {
+        return this.role;
     }
 
-    public String getRole(){
-        return this.role;
+    public void setRole(String position) {
+        this.role = position;
     }
 
     @Override
