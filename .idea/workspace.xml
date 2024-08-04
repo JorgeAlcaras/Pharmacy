@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a39b759-57fe-425e-b960-ed4460bf70b9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Ticket.java" afterDir="false" />
-    </list>
+    <list default="true" id="9a39b759-57fe-425e-b960-ed4460bf70b9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,6 +48,31 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="fix/SecondPart" />
+                    <option name="lastUsedInstant" value="1722751791" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="feature/SellProductsYManageClients" />
+                    <option name="lastUsedInstant" value="1722751790" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -75,7 +95,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "code.cleanup.on.save": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "feature/SellProductsYManageClients",
+    "git-widget-placeholder": "fix/SecondPart",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/jorge/Projects/Pharmacy",
     "node.js.detected.package.eslint": "true",

@@ -12,9 +12,8 @@ public class Main {
     static Employee[] employees = new Employee[50];
     static Person[] clients = new Person[50];
     static ReceptionNote[] receptionNotes = new ReceptionNote[50];
-
+    static RestockOrder[] restockOrders = new RestockOrder[50];
     static Ticket[] tickets = new Ticket[50];
-
     static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     public static void main(String[] args) {
@@ -67,7 +66,8 @@ public class Main {
         System.out.println("5- Manage Employees");
         System.out.println("6- Report Inventory");
         System.out.println("7- Reception Note Options");
-        System.out.println("8- Sales Report");
+        System.out.println("8- Restock Order Options");
+        System.out.println("9- Sales Report");
 
         System.out.print("   -> ");
         int option = scanner.nextInt();
@@ -100,6 +100,9 @@ public class Main {
                 receptionNoteOptions();
                 break;
             case 8:
+                restockOrderOptions();
+                break;
+            case 9:
                 try {
                     reportSales();
                 } catch (ParseException e) {
@@ -1257,6 +1260,113 @@ public class Main {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
+
+    public static void restockOrderOptions() {
+        int choice;
+
+        do {
+            clearScreen();
+            System.out.println("\n====== Pharmacy Yahualica ======");
+            System.out.println("      = Manage Restock Order =");
+            System.out.println("\n Select an activity:");
+            System.out.println("1- Create Restock Order");
+            System.out.println("2- Show Restock Order");
+            System.out.println("\t3- Back");
+            System.out.print("   -> ");
+            choice = scanner.nextInt();
+
+
+            switch (choice) {
+                case 1: // Create Reception Note
+                    createRestockOrder();
+                    break;
+
+                case 2: // Show Reception Note
+                    showRestockOrder();
+                    break;
+
+                case 3:
+                    mainMenu();
+                    break;
+
+                default:
+                    break;
+            }
+
+
+        } while (true);
+
+    }
+
+    public static void createRestockOrder() {
+        boolean option = true;
+        int supplierID;
+        int productID;
+        int quantity;
+        int count = 0;
+        int productNum = 0;
+
+
+        for (int i = 0; i < restockOrders.length; i++) {
+            if (restockOrders[i] == null) {
+                restockOrders[i] = new RestockOrder();
+                count = i;
+                break;
+            }
+        }
+        System.out.println("Create Restock Order");
+        System.out.print("Supplier ID: ");
+        supplierID = scanner.nextInt();
+        while (suppliers[supplierID] == null) {
+            System.out.println("Supplier not found. Try again.");
+            System.out.print("Supplier ID: ");
+            supplierID = scanner.nextInt();
+        }
+        restockOrders[count].setSupplier(suppliers[supplierID]);
+
+        scanner.nextLine(); // pause
+        System.out.println("Products ");
+        while (option) {
+            System.out.print("Product ID: ");
+            productID = scanner.nextInt();
+            System.out.print("Quantity: ");
+            quantity = scanner.nextInt();
+            restockOrders[count].addProduct(productID, quantity, productNum);
+            System.out.print("Add another product? (y/n): ");
+            scanner.nextLine(); // pause
+            if (scanner.nextLine().equals("n")) {
+                option = false;
+            }
+            productNum++;
+        }
+    }
+
+    public static void showRestockOrder() {
+        String data;
+
+
+        for (RestockOrder restockOrder : restockOrders) {
+            if (restockOrder != null) {
+                System.out.println("Show Restock Order");
+                System.out.print("Which Restock Order do you want to see? (Write the ID or YYYY-MM-DD)");
+                scanner.nextLine(); //Pause
+                data = scanner.nextLine();
+                try {
+                    if (restockOrder.getId() == Integer.parseInt(data)) {
+                        System.out.println(restockOrder);
+                        break;
+                    }
+                } catch (NumberFormatException ignored) {
+                    if (Objects.equals(restockOrder.getDate(), data)) {
+                        System.out.println(restockOrder);
+                    } else {
+                        System.out.println("Restock order not found :( ");
+                    }
+                }
+            }
+        }
+    }
+
 
 }
 
