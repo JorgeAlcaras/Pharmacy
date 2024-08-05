@@ -18,21 +18,21 @@ public class Main {
 
     public static void main(String[] args) {
 
-        inventory[0] = new Product("Paracetamol", "MarcaX", 2.00f, 3.00f, "Pz", 100, 0, 20);
-        inventory[1] = new Product("Ibuprofen", "MarcaY", 4.00f, 5.00f, "Pz", 80, 0, 20);
-        inventory[2] = new Product("Amoxicillin", "MarcaZ", 6.00f, 7.00f, "Pz", 50, 0, 15);
-        inventory[3] = new Product("Omeprazole", "MarcaX", 5.00f, 6.00f, "Pz", 60, 0, 15);
-        inventory[4] = new Product("Loratadine", "MarcaY", 3.00f, 4.00f, "Pz", 90, 0, 25);
-        inventory[5] = new Product("Simvastatin", "MarcaZ", 10.00f, 11.00f, "Pz", 40, 0, 10);
-        inventory[6] = new Product("Metformin", "MarcaX", 7.00f, 8.00f, "Pz", 70, 0, 20);
-        inventory[7] = new Product("Aspirin", "MarcaY", 1.00f, 2.00f, "Pz", 120, 0, 30);
-        inventory[8] = new Product("Sodium Chloride", "MarcaZ", 2.00f, 3.00f, "Pz", 200, 0, 25);
-        inventory[9] = new Product("Diclofenac", "MarcaX", 4.50f, 5.50f, "Pz", 65, 0, 18);
-        inventory[10] = new Product("Cetirizine", "MarcaY", 3.50f, 4.50f, "Pz", 75, 0, 20);
-        inventory[11] = new Product("Metoprolol", "MarcaZ", 8.00f, 9.00f, "Pz", 35, 0, 15);
-        inventory[12] = new Product("Insulin", "MarcaX", 15.00f, 16.00f, "Pz", 25, 0, 10);
-        inventory[13] = new Product("Salbutamol", "MarcaY", 3.50f, 4.50f, "Pz", 60, 0, 20);
-        inventory[14] = new Product("Warfarin", "MarcaZ", 6.50f, 7.50f, "Pz", 50, 0, 15);
+        inventory[0] = new Product("Paracetamol", "MarcaX", 2.00f, 3.00f, "Pz", 0, 0, 20);
+        // inventory[1] = new Product("Ibuprofen", "MarcaY", 4.00f, 5.00f, "Pz", 80, 0, 20);
+        // inventory[2] = new Product("Amoxicillin", "MarcaZ", 6.00f, 7.00f, "Pz", 50, 0, 15);
+        // inventory[3] = new Product("Omeprazole", "MarcaX", 5.00f, 6.00f, "Pz", 60, 0, 15);
+        // inventory[4] = new Product("Loratadine", "MarcaY", 3.00f, 4.00f, "Pz", 90, 0, 25);
+        // inventory[5] = new Product("Simvastatin", "MarcaZ", 10.00f, 11.00f, "Pz", 40, 0, 10);
+        // inventory[6] = new Product("Metformin", "MarcaX", 7.00f, 8.00f, "Pz", 70, 0, 20);
+        // inventory[7] = new Product("Aspirin", "MarcaY", 1.00f, 2.00f, "Pz", 120, 0, 30);
+        // inventory[8] = new Product("Sodium Chloride", "MarcaZ", 2.00f, 3.00f, "Pz", 200, 0, 25);
+        // inventory[9] = new Product("Diclofenac", "MarcaX", 4.50f, 5.50f, "Pz", 65, 0, 18);
+        // inventory[10] = new Product("Cetirizine", "MarcaY", 3.50f, 4.50f, "Pz", 75, 0, 20);
+        // inventory[11] = new Product("Metoprolol", "MarcaZ", 8.00f, 9.00f, "Pz", 35, 0, 15);
+        // inventory[12] = new Product("Insulin", "MarcaX", 15.00f, 16.00f, "Pz", 25, 0, 10);
+        // inventory[13] = new Product("Salbutamol", "MarcaY", 3.50f, 4.50f, "Pz", 60, 0, 20);
+        // inventory[14] = new Product("Warfarin", "MarcaZ", 6.50f, 7.50f, "Pz", 50, 0, 15);
 
         suppliers[0] = new Supplier("Juan Perez", "333-333-3333", "JU493R35RFC4", "Farmacias Guadalajara");
 
@@ -59,7 +59,7 @@ public class Main {
         System.out.println("\n\n====== Pharmacy Yahualica ======");
         System.out.println("\n Select an activity");
 
-        System.out.println("1- Start a sale (not working)");
+        System.out.println("1- Start a sale");
         System.out.println("2- Manage Products");
         System.out.println("3- Manage Clients");
         System.out.println("4- Manage Suppliers");
@@ -108,6 +108,8 @@ public class Main {
                 } catch (ParseException e) {
                     throw new RuntimeException(e);
                 }
+                scanner.nextLine();
+                mainMenu();
                 break;
 
             default:
@@ -128,7 +130,7 @@ public class Main {
             System.out.println("2- Update client");
             System.out.println("3- Delete client");
             System.out.println("4- Show client");
-            System.out.println("\t5- Back");
+            System.out.println("\t0- Back");
 
             System.out.print("   -> ");
             int option = scanner.nextInt();
@@ -146,7 +148,7 @@ public class Main {
                 case 4:
                     showClients();
                     break;
-                case 5:
+                case 0:
                     mainMenu();
                     break;
                 default:
@@ -326,7 +328,8 @@ public class Main {
             System.out.println("1- Add supplier");
             System.out.println("2- Update supplier");
             System.out.println("3- Delete supplier");
-            System.out.println("\t4- Back");
+            System.out.println("4- show supplier");
+            System.out.println("\t0- Back");
 
             System.out.print("   -> ");
             choice = scanner.nextInt();
@@ -351,7 +354,7 @@ public class Main {
                     showSuppliers();
                     break;
 
-                case 5:
+                case 0:
                     mainMenu();
                     break;
 
@@ -541,7 +544,7 @@ public class Main {
             System.out.println("1- Add employee");
             System.out.println("2- Update employee");
             System.out.println("3- Delete employee");
-            System.out.println("\t4- Back");
+            System.out.println("\t0- Back");
 
             System.out.print("   -> ");
             choice = scanner.nextInt();
@@ -561,6 +564,10 @@ public class Main {
                     break;
 
                 case 4:
+                    showEmployees();
+                    break;
+
+                case 0:
                     mainMenu();
                     break;
 
@@ -726,11 +733,24 @@ public class Main {
         scanner.nextLine();
     }
 
+    public static void showEmployees() {
+        for (int i = 0; employees[i] != null; i++) {
+            System.out.println(employees[i].toString());
+        }
+
+        // pause
+        scanner.nextLine();
+        scanner.nextLine();
+    }
+
+
+    //Products
+
     public static void manageProducts() {
         int count = 0;
         int idProduct;
         int choice;
-        boolean editing = true;
+        boolean editing;
         String name, units;
 
         // String brand;
@@ -739,6 +759,7 @@ public class Main {
         // int stock, reorderPoint;
 
         do {
+            editing = true;
             clearScreen();
             System.out.println("\n====== Pharmacy Yahualica ======");
             System.out.println("      = Manage Products =");
@@ -746,7 +767,7 @@ public class Main {
             System.out.println("1- Add product");
             System.out.println("2- Update product");
             System.out.println("3- Delete product");
-            System.out.println("\t4- Back");
+            System.out.println("\t0- Back");
 
             System.out.print("   -> ");
             choice = scanner.nextInt();
@@ -878,7 +899,7 @@ public class Main {
                     scanner.nextLine(); // pause
                     break;
 
-                case 4:
+                case 0:
                     mainMenu();
                     break;
 
@@ -899,18 +920,20 @@ public class Main {
             System.out.println("\n Select an activity:");
             System.out.println("1- Inventory Cost Report");
             System.out.println("2- Inventory Stock Report");
-            System.out.println("\t3- Back");
+            System.out.println("\t0- Back");
             System.out.print("   -> ");
             option = scanner.nextInt();
 
             switch (option) {
                 case 1:
                     inventoryCostReport();
+                    scanner.nextLine(); //pause
                     break;
                 case 2:
                     getInventory();
+                    scanner.nextLine(); //pause
                     break;
-                case 3:
+                case 0:
                     mainMenu();
                     break;
                 default:
@@ -932,6 +955,7 @@ public class Main {
         }
         System.out.println("Total products: " + count);
         System.out.println("Total cost: " + totalCost);
+        scanner.nextLine();
     }
 
     public static void inventoryCostReport() {
@@ -962,8 +986,6 @@ public class Main {
         System.out.println("Total pieces: " + totalPieces);
         System.out.println("Total cost: " + totalCost);
         System.out.println("==================================");
-
-        // pause
         scanner.nextLine();
     }
 
@@ -977,7 +999,7 @@ public class Main {
             System.out.println("\n Select an activity:");
             System.out.println("1- Create Reception Note");
             System.out.println("2- Show Reception Note");
-            System.out.println("\t3- Back");
+            System.out.println("\t0- Back");
             System.out.print("   -> ");
             choice = scanner.nextInt();
 
@@ -985,13 +1007,15 @@ public class Main {
             switch (choice) {
                 case 1: // Create Reception Note
                     createReceptionNote();
+                    scanner.nextLine(); //pause
                     break;
 
                 case 2: // Show Reception Note
                     showReceptionNote();
+                    scanner.nextLine(); //pause
                     break;
 
-                case 3:
+                case 0:
                     mainMenu();
                     break;
 
@@ -1093,7 +1117,7 @@ public class Main {
 
         System.out.println(filteredTickets);
 
-
+        scanner.nextLine();
     }
 
 
@@ -1114,6 +1138,13 @@ public class Main {
     public static void startSell() {
         Ticket ticket = new Ticket();
 
+        clearScreen();
+        System.out.println("\n\n====== Pharmacy Yahualica ======");
+        System.out.println("\n New sell");
+        
+        System.out.println("Customer id: ");
+        ticket.setClientName(clients[scanner.nextInt()].getName());
+            
         do {
             clearScreen();
             System.out.println("\n\n====== Pharmacy Yahualica ======");
@@ -1123,8 +1154,7 @@ public class Main {
             System.out.println("2- Cancel product");
             System.out.println("3- Show current ticket");
             System.out.println("4- Finish ticket");
-            System.out.println("5- Cancel ticket");
-            System.out.println("\t0- Exit");
+            System.out.println("0- Cancel ticket");
 
             System.out.print("   -> ");
             int option = scanner.nextInt();
@@ -1150,11 +1180,9 @@ public class Main {
 
                     break;
 
-                case 5:
-                    ticket = cancelTicket(ticket);
-                    break;
-
                 case 0:
+                    ticket = cancelTicket(ticket);
+                    mainMenu();
                     break;
 
                 default:
@@ -1271,7 +1299,7 @@ public class Main {
             System.out.println("\n Select an activity:");
             System.out.println("1- Create Restock Order");
             System.out.println("2- Show Restock Order");
-            System.out.println("\t3- Back");
+            System.out.println("\t0- Back");
             System.out.print("   -> ");
             choice = scanner.nextInt();
 
@@ -1285,7 +1313,7 @@ public class Main {
                     showRestockOrder();
                     break;
 
-                case 3:
+                case 0:
                     mainMenu();
                     break;
 

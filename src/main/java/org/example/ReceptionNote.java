@@ -48,14 +48,23 @@ public class ReceptionNote {
         if (Main.inventory[productID] != null) {
             for (Product product : products) {
                 if (product != null && product.id == productID) {
+                    System.out.println(product.quantity);
+                    System.out.println(quantity);
                     product.quantity += quantity;
                     Main.inventory[productID].stock += quantity;
+                    System.out.println(product.quantity);
+                    System.out.println(quantity);
                     break;
                 } else {
                     if (Main.inventory[productID] != null) {
+                        System.out.println(quantity);
                         products[id] = Main.inventory[productID];
+                        System.out.println(products[id].quantity);
                         products[id].quantity = quantity;
                         Main.inventory[productID].stock += quantity;
+                        System.out.println(products[id].quantity);
+                        System.out.println(quantity);
+                        break;
                     }
                 }
             }
