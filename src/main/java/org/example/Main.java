@@ -1136,15 +1136,21 @@ public class Main {
 
     //start sell
     public static void startSell() {
-        Ticket ticket = new Ticket();
+        int ticketId = 0;
+        for (int i = 0; i < tickets.length; i++) {
+            if (tickets[i] == null) {
+                ticketId = i;
+                break;
+            }
+        }
 
         clearScreen();
         System.out.println("\n\n====== Pharmacy Yahualica ======");
         System.out.println("\n New sell");
-        
+
         System.out.println("Customer id: ");
-        ticket.setClientName(clients[scanner.nextInt()].getName());
-            
+        tickets[ticketId].setClientName(clients[scanner.nextInt()].getName());
+
         do {
             clearScreen();
             System.out.println("\n\n====== Pharmacy Yahualica ======");
@@ -1161,27 +1167,27 @@ public class Main {
 
             switch (option) {
                 case 1:
-                    ticket = addTicketProduct(ticket);
+                    addTicketProduct(ticketId);
                     break;
 
                 case 2:
-                    ticket = cancelProduct(ticket);
+                    cancelProduct(ticketId);
                     break;
 
                 case 3:
                     System.out.println("\n -- Current ticket --\n\n");
-                    System.out.println(ticket.toString());
+                    System.out.println(tickets[ticketId].toString());
                     scanner.nextLine(); // pause
                     scanner.nextLine();
                     break;
 
                 case 4:
-                    finishTicket(ticket);
+                    finishTicket(ticketId);
 
                     break;
 
                 case 0:
-                    ticket = cancelTicket(ticket);
+                    cancelTicket(ticketId);
                     mainMenu();
                     break;
 
@@ -1194,7 +1200,7 @@ public class Main {
 
     }
 
-    public static Ticket addTicketProduct(Ticket ticket) {
+    public static void addTicketProduct(int ticketId) {
         int idProduct;
         int quantity = 0;
 
@@ -1212,7 +1218,7 @@ public class Main {
                 System.out.println("No hay suficiente stock para el producto: " + inventory[idProduct].getName());
             }
 
-            ticket.addProduct(inventory[idProduct].getId(), quantity);
+            tickets[ticketId].addProduct(inventory[idProduct].getId(), quantity);
 
             System.out.println("Add another product? (y/n)");
             scanner.nextLine();
@@ -1222,12 +1228,10 @@ public class Main {
 
         } while (true);
 
-
-        return ticket;
     }
 
-    public static Ticket cancelProduct(Ticket ticket) {
-        Product[] product = ticket.getProducts();
+    public static void cancelProduct(int ticketId) {
+        Product[] product = tickets[ticketId].getProducts();
         int idProduct;
 
         do {
@@ -1237,7 +1241,7 @@ public class Main {
             for (int i = 0; i < product.length; i++) {
                 if (product[i].getId() == idProduct) {
 
-                    ticket.setSubtotal(ticket.getSubtotal() - (product[i].getPrice() * product[i].getQuantity()));
+                    tickets[ticketId].setSubtotal(tickets[ticketId].getSubtotal() - (product[i].getPrice() * product[i].getQuantity()));
                     product[i] = null;
                     break;
                 }
@@ -1251,13 +1255,11 @@ public class Main {
             }
 
         } while (true);
-
-        return ticket;
     }
 
 
-    public static void finishTicket(Ticket ticket) {
-        Product[] products = ticket.getProducts();
+    public static void finishTicket(int ticketId) {
+        Product[] products = tickets[ticketId].getProducts();
 
 
         for (Product product1 : products) {
@@ -1278,9 +1280,8 @@ public class Main {
     }
 
 
-    public static Ticket cancelTicket(Ticket t) {
-        t = null;
-        return t;
+    public static void cancelTicket(int ticketId) {
+        tickets[ticketId] = null;
     }
 
 
