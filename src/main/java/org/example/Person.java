@@ -1,7 +1,7 @@
 package org.example;
 
 public class Person {
-    private static int count = 0;
+    private static int count = -1;
     int id;
     String name;
     String phone;

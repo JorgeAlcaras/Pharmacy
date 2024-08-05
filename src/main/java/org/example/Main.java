@@ -18,37 +18,25 @@ public class Main {
 
     public static void main(String[] args) {
 
-        inventory[0] = new Product("Paracetamol", "MarcaX", 2.00f, 3.00f, "Pz", 0, 0, 20);
-        // inventory[1] = new Product("Ibuprofen", "MarcaY", 4.00f, 5.00f, "Pz", 80, 0, 20);
-        // inventory[2] = new Product("Amoxicillin", "MarcaZ", 6.00f, 7.00f, "Pz", 50, 0, 15);
-        // inventory[3] = new Product("Omeprazole", "MarcaX", 5.00f, 6.00f, "Pz", 60, 0, 15);
-        // inventory[4] = new Product("Loratadine", "MarcaY", 3.00f, 4.00f, "Pz", 90, 0, 25);
-        // inventory[5] = new Product("Simvastatin", "MarcaZ", 10.00f, 11.00f, "Pz", 40, 0, 10);
-        // inventory[6] = new Product("Metformin", "MarcaX", 7.00f, 8.00f, "Pz", 70, 0, 20);
-        // inventory[7] = new Product("Aspirin", "MarcaY", 1.00f, 2.00f, "Pz", 120, 0, 30);
-        // inventory[8] = new Product("Sodium Chloride", "MarcaZ", 2.00f, 3.00f, "Pz", 200, 0, 25);
-        // inventory[9] = new Product("Diclofenac", "MarcaX", 4.50f, 5.50f, "Pz", 65, 0, 18);
-        // inventory[10] = new Product("Cetirizine", "MarcaY", 3.50f, 4.50f, "Pz", 75, 0, 20);
-        // inventory[11] = new Product("Metoprolol", "MarcaZ", 8.00f, 9.00f, "Pz", 35, 0, 15);
-        // inventory[12] = new Product("Insulin", "MarcaX", 15.00f, 16.00f, "Pz", 25, 0, 10);
-        // inventory[13] = new Product("Salbutamol", "MarcaY", 3.50f, 4.50f, "Pz", 60, 0, 20);
-        // inventory[14] = new Product("Warfarin", "MarcaZ", 6.50f, 7.50f, "Pz", 50, 0, 15);
+        inventory[0] = new Product("Paracetamol", "MarcaX", 2.00f, 3.00f, "Pz", 100, 0, 20);
+        inventory[1] = new Product("Ibuprofen", "MarcaY", 4.00f, 5.00f, "Pz", 80, 0, 20);
+        inventory[2] = new Product("Amoxicillin", "MarcaZ", 6.00f, 7.00f, "Pz", 50, 0, 15);
+        inventory[3] = new Product("Omeprazole", "MarcaX", 5.00f, 6.00f, "Pz", 60, 0, 15);
+        inventory[4] = new Product("Loratadine", "MarcaY", 3.00f, 4.00f, "Pz", 90, 0, 25);
+        inventory[5] = new Product("Simvastatin", "MarcaZ", 10.00f, 11.00f, "Pz", 40, 0, 10);
+        inventory[6] = new Product("Metformin", "MarcaX", 7.00f, 8.00f, "Pz", 70, 0, 20);
+        inventory[7] = new Product("Aspirin", "MarcaY", 1.00f, 2.00f, "Pz", 120, 0, 30);
+        inventory[8] = new Product("Sodium Chloride", "MarcaZ", 2.00f, 3.00f, "Pz", 200, 0, 25);
+        inventory[9] = new Product("Diclofenac", "MarcaX", 4.50f, 5.50f, "Pz", 65, 0, 18);
+        inventory[10] = new Product("Cetirizine", "MarcaY", 3.50f, 4.50f, "Pz", 75, 0, 20);
+        inventory[11] = new Product("Metoprolol", "MarcaZ", 8.00f, 9.00f, "Pz", 35, 0, 15);
+        inventory[12] = new Product("Insulin", "MarcaX", 15.00f, 16.00f, "Pz", 25, 0, 10);
+        inventory[13] = new Product("Salbutamol", "MarcaY", 3.50f, 4.50f, "Pz", 60, 0, 20);
+        inventory[14] = new Product("Warfarin", "MarcaZ", 6.50f, 7.50f, "Pz", 50, 0, 15);
 
         suppliers[0] = new Supplier("Juan Perez", "333-333-3333", "JU493R35RFC4", "Farmacias Guadalajara");
 
         System.out.println(suppliers[0]);
-
-        Ticket ticket = new Ticket();
-        ticket.setClientName("Juan Perez");
-        ticket.addProduct(1000001, 7);
-        ticket.addProduct(1000002, 1000);
-        ticket.addProduct(1000014, 1);
-        ticket.addProduct(1000011, 4);
-        ticket.setAmountReceived(10000);
-
-        tickets[0] = ticket;
-
-        // System.out.println(ticket);
 
         mainMenu();
 
@@ -170,7 +158,7 @@ public class Main {
         // pause
         scanner.nextLine();
 
-        System.out.print("Nombre: ");
+        System.out.print("Name: ");
         name = scanner.nextLine();
 
         System.out.print("Phone: ");
@@ -236,7 +224,7 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    System.out.print("Nombre: ");
+                    System.out.print("Name: ");
                     clients[idClients].setName(scanner.nextLine());
                     break;
                 case 2:
@@ -334,8 +322,6 @@ public class Main {
             System.out.print("   -> ");
             choice = scanner.nextInt();
 
-            // suppliers[0] = new Supplier("name", "email", "phone", "address", "company");
-
             switch (choice) {
 
                 case 1: // Add supplier
@@ -377,7 +363,7 @@ public class Main {
         // pause
         scanner.nextLine();
 
-        System.out.print("Nombre: ");
+        System.out.print("Name: ");
         name = scanner.nextLine();
 
         System.out.print("Phone: ");
@@ -447,7 +433,7 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    System.out.print("Nombre: ");
+                    System.out.print("Name: ");
                     suppliers[idSupplier].setName(scanner.nextLine());
                     break;
                 case 2:
@@ -590,7 +576,7 @@ public class Main {
         // pause
         scanner.nextLine();
 
-        System.out.print("Nombre: ");
+        System.out.print("Name: ");
         name = scanner.nextLine();
 
         System.out.print("Phone: ");
@@ -661,7 +647,7 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    System.out.print("Nombre: ");
+                    System.out.print("Name: ");
                     employees[idEmployee].setName(scanner.nextLine());
                     break;
                 case 2:
@@ -1094,7 +1080,7 @@ public class Main {
                     if (Objects.equals(receptionNote.receivedDate, data)) {
                         System.out.println(receptionNote);
                     } else {
-                        System.out.println("Nota de recepción no encontrada :( ");
+                        System.out.println("Reception note not found :( ");
                     }
                 }
             }
@@ -1107,15 +1093,18 @@ public class Main {
 
         System.out.println("\n====== Pharmacy Yahualica ======");
         System.out.println("        = Sales Report =");
-        System.out.print("Escribe la fecha de inicio (YYYY-MM-DD): ");
+        System.out.print("Start date (YYYY-MM-DD): ");
         scanner.nextLine();
         startDate = scanner.nextLine();
-        System.out.print("Escribe la fecha de final (YYYY-MM-DD): ");
+        System.out.print("Finish date (YYYY-MM-DD): ");
         endDate = scanner.nextLine();
 
         List<Ticket> filteredTickets = filterTicketsByDateRange(sdf.parse(startDate), sdf.parse(endDate));
 
-        System.out.println(filteredTickets);
+        
+        for(Ticket ticket1 : filteredTickets){
+            System.out.println(ticket1);
+        }
 
         scanner.nextLine();
     }
@@ -1177,7 +1166,7 @@ public class Main {
 
                 case 4:
                     finishTicket(ticket);
-
+                    mainMenu();
                     break;
 
                 case 0:
@@ -1209,7 +1198,7 @@ public class Main {
             System.out.print("Quantity: ");
             quantity = scanner.nextInt();
             if (inventory[idProduct].getStock() < quantity) {
-                System.out.println("No hay suficiente stock para el producto: " + inventory[idProduct].getName());
+                System.out.println("Not enought stock on inventory: " + inventory[idProduct].getName());
             }
 
             ticket.addProduct(inventory[idProduct].getId(), quantity);
@@ -1263,7 +1252,7 @@ public class Main {
         for (Product product1 : products) {
             if (product1 != null) {
                 if (inventory[product1.getId()].getStock() < product1.getQuantity()) {
-                    System.out.println("No hay suficiente stock para el producto: " + inventory[product1.getId()].getName());
+                    System.out.println("Not enought stock on inventory: " + inventory[product1.getId()].getName());
                     return;
                 } else {
                     inventory[product1.getId()].setStock(inventory[product1.getId()].getStock() - product1.getQuantity());
@@ -1271,7 +1260,13 @@ public class Main {
 
             }
         }
-
+        
+        for(int i = 0; i<tickets.length; i++){
+            if(tickets[i]==null){
+                tickets[i] = ticket;
+                break;
+            }
+        }
 
         scanner.nextLine(); //pause
         scanner.nextLine(); //pause
@@ -1311,6 +1306,7 @@ public class Main {
 
                 case 2: // Show Reception Note
                     showRestockOrder();
+                    scanner.nextLine();
                     break;
 
                 case 0:
@@ -1395,7 +1391,4 @@ public class Main {
         }
     }
 
-
 }
-
-
